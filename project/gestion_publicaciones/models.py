@@ -33,3 +33,18 @@ class Publicacion(models.Model):
     
     def __str__(self) -> str:
         return f"Usuario: {self.vendedor} - Libro: {self.titulo_libro} - {self.autor_libro}"
+
+
+# Modelo para dejar un comentario en la publicacion
+
+class Mensaje(models.Model):
+    publicacion_mensaje = models.ForeignKey(Publicacion, related_name='mensajes', on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=50)
+    mensaje = models.TextField()
+    fecha_mensaje = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-fecha_mensaje']
+        
+    def __str__(self) -> str:
+        return f"Nombre: {self.nombre} - Publicacion: {self.publicacion_mensaje}"
