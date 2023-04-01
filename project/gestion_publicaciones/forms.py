@@ -2,9 +2,8 @@ from django import forms
 from gestion_publicaciones.models import Publicacion, Mensaje
 
 
-# Formulario para crear una publicacion
-
 class NuevaPublicacionForm(forms.ModelForm):
+    # Formulario para crear una publicacion
     
     class Meta:
         model = Publicacion
@@ -24,9 +23,8 @@ class NuevaPublicacionForm(forms.ModelForm):
         }
         
 
-# Formulario para editar una publicacion
-
 class EditarPublicacionForm(forms.ModelForm):
+    # Formulario para editar una publicacion
     
     class Meta:
         model = Publicacion
@@ -42,4 +40,18 @@ class EditarPublicacionForm(forms.ModelForm):
             'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Valor del producto', 'maxlenght': '12', 'type': 'number'}),
             'telefono_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefono de contacto', 'type': 'number'}),
             'email_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email de contacto'})
+        }
+
+
+class MensajeForm(forms.ModelForm):
+    # Formulario para crear un mensaje de publicacion
+    
+    class Meta:
+        model = Mensaje
+        fields = ('publicacion_mensaje', 'mensaje')
+        
+        # Widgets para personalizar el formulario con CSS
+        widgets = {
+            'mensaje': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Mensaje'}),
+            'publicacion_mensaje': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'publicacion_mensaje_id', 'type': 'hidden'})
         }
