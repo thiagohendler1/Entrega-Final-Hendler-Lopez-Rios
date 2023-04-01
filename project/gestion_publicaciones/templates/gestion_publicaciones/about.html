@@ -1,0 +1,61 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %} Sobre Success Mindset {% endblock title %}
+
+{% block active_about %}active{% endblock active_about %}
+
+{% block content %}
+
+<div class="page-heading contact-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>ABOUT</h4>
+              <h2>sobre nosotros</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Sobre Nosotros</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="{% static 'core/images/feature-image.jpg' %}" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4>Quienes somos &amp; que hacemos?</h4>
+              <p>Somos Thiago y Felipe. Actualmente estamos aprendiendo el lenguaje de programación Python y el Framework Django. Desarrollamos esta pagina, Succes Mindset, la cual permite a los usuarios registrados realizar compras y vender libros enfocados al desarrollo personal.
+              Gracias por visitar nuestra página y no dejes de seguirnos en nuestras redes sociales</p>
+              <ul class="social-icons">
+                <div class="sociales-thiago">
+                    <h4>Thiago</h4>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </div>
+                <div class="sociales-felipe">
+                    <h4>Felipe</h4>
+                    <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock content %}
