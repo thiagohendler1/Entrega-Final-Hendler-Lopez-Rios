@@ -39,7 +39,6 @@ class Publicacion(models.Model):
 
 class Mensaje(models.Model):
     publicacion_mensaje = models.ForeignKey(Publicacion, related_name='mensajes', on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=50)
     mensaje = models.TextField()
     fecha_mensaje = models.DateTimeField(auto_now_add=True)
     
@@ -47,4 +46,4 @@ class Mensaje(models.Model):
         ordering = ['-fecha_mensaje']
         
     def __str__(self) -> str:
-        return f"Nombre: {self.nombre} - Publicacion: {self.publicacion_mensaje}"
+        return f"Nombre: {self.pk} - Publicacion: {self.publicacion_mensaje}"
