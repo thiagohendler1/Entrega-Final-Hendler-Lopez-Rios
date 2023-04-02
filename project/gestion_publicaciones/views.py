@@ -52,5 +52,19 @@ def TiendaView(request):
                 object_list = Publicacion.objects.filter(titulo_libro__icontains=request.POST['searched_product'].strip())
                 mensaje = f'Haz buscado "{request.POST["searched_product"]}"'
                 return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list, 'mensaje': mensaje})
+    
+    # Si request.method = GET, entonces el usuario vino por localhost:xxxx/genres/ 
+    else:
+        if request.GET:
+            categoria = request.GET['filter_select']
+            object_list = Publicacion.objects.filter(genero_libro=categoria)
+            
+            return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list})
         
     return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list})
+
+
+# LOGIN REQUIRED
+def GenerosView(request):
+    
+    return render(request, 'gestion_publicaciones/generos.html')
