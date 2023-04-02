@@ -129,20 +129,20 @@
           <div class="col-md-6">
             <div class="left-content">
               <h4>Estas buscando libros de desarrollo personal?</h4>
-              <p><a rel="nofollow" href="" target="_parent">Success Mindset</a> es una pagina de compra-venta de libros enfocados al desarrollo personal, que tiene como objetivo ayudar a las personas a desarrollar una mentalidad de éxito y lograr sus metas y objetivos en la vida a traves de la lectura. <a rel="nofollow" href="">Contactanos</a> para recibir mas informacion.</p>
+              <p><a rel="nofollow" href="{% url 'sobre_nosotros' %}" target="_parent">Success Mindset</a> es una pagina de compra-venta de libros enfocados al desarrollo personal, que tiene como objetivo ayudar a las personas a desarrollar una mentalidad de éxito y lograr sus metas y objetivos en la vida a traves de la lectura. Contactanos para recibir mas informacion.</p>
               <ul class="featured-list">
-                <li><a href="#">Desarrollo personal</a></li>
-                <li><a href="#">Liderazgo</a></li>
-                <li><a href="#">Riqueza</a></li>
-                <li><a href="#">Emprendimiento</a></li>
-                <li><a href="#">Analisis tecnico & Trading</a></li>
+                <li><a href="{% url 'generos' %}">Desarrollo personal</a></li>
+                <li><a href="{% url 'generos' %}">Liderazgo</a></li>
+                <li><a href="{% url 'generos' %}">Riqueza</a></li>
+                <li><a href="{% url 'generos' %}">Emprendimiento</a></li>
+                <li><a href="{% url 'generos' %}">Analisis tecnico & Trading</a></li>
               </ul>
               <a href="#" class="filled-button">Registrarse</a>
             </div>
           </div>
           <div class="col-md-6">
             <div class="right-image">
-              <img src="{% static 'gestion_publicaciones/images/feature-image.jpg' %}" alt="">
+              <img src="{% static 'gestion_publicaciones/images/about-home.jpg' %}" alt="">
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@
                   <p>En SUCCESS MINDSET estamos comprometidos con tu desarrollo. Traemos los mejores títulos en libros sobre desarrollo personal, emprendimiento, finanzas y espiritualidad. Con el único propósito y objetivo de que logres desarrollarte al 100% como una persona exitosa.</p>
                 </div>
                 <div class="col-md-4">
-                  <a href="#" class="filled-button">Comprar ahora</a>
+                  <a href="{% url 'tienda' %}" class="filled-button">Comprar ahora</a>
                 </div>
               </div>
             </div>

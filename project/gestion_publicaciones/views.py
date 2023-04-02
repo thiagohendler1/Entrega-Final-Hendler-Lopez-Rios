@@ -66,5 +66,9 @@ def TiendaView(request):
 
 # LOGIN REQUIRED
 def GenerosView(request):
-    
     return render(request, 'gestion_publicaciones/generos.html')
+
+
+class AboutView(TemplateView):
+    template_name = 'gestion_publicaciones/about.html'
+    
