@@ -75,47 +75,47 @@ def register(request):
 
     return render(request, 'usuarios/register.html', {'form':form})
 
-# def login(request):
-    
-# #FALTA AGREGAR AL HTML las keys de los value. 
-    
-#     if request.method == 'POST':
-#         form = AuthenticationForm(request, data = request.POST)
-        
-#         if form.is_valid():
-#             usuario = form.cleaned_data.get('username')
-#             contra = form.cleaned_data.get('password')
-            
-#             user = authenticate(username = usuario, password = contra)
-            
-#             if user is not None:
-#                 login(request, user)
-#                 return render(request, 'usuarios/inicio.html', {'mensaje': f"Bienvenido/a {usuario}"})
-            
-#             else:
-#                 return render(request, 'usuarios/inicio.html', {'mensaje': 'Error en los datos.'})
-            
-#         else: 
-#             return render(request, 'usuarios/incio.html', {'mensaje': 'Formulario erroneo'})
-    
-#     form = AuthenticationForm()
-    
-#     return render(request, 'usuarios/login.html', {'form': form})
-
 def login(request):
+    
+#FALTA AGREGAR AL HTML las keys de los value. 
+    
     if request.method == 'POST':
-        usuario = request.POST['username']
-        contra = request.POST['password']
-        user = authenticate(request, username=usuario, password=contra)
-        if user is not None:
-            login(request, user)
-            return render(request, 'usuarios/inicio.html')
+        form = AuthenticationForm(request, data = request.POST)
         
-        else:
-            return render(request, 'usuarios/login.html', {'mensaje': 'Credenciales inválidas.'})
+        if form.is_valid():
+            usuario = form.cleaned_data['username']
+            contra = form.cleaned_data['password']
+            
+            user = authenticate(username = usuario, password = contra)
+            
+            if user is not None:
+                login(request, user)
+                return render(request, 'usuarios/inicio.html', {'mensaje': f"Bienvenido/a {usuario}"})
+            
+            else:
+                return render(request, 'usuarios/inicio.html', {'mensaje': 'Error en los datos.'})
+            
+        else: 
+            return render(request, 'usuarios/inicio.html', {'mensaje': 'Formulario erroneo'})
+    
+    form = AuthenticationForm()
+    
+    return render(request, 'usuarios/login.html', {'form': form})
+
+# def login(request):
+#     if request.method == 'POST':
+#         usuario = request.POST['username']
+#         contra = request.POST['password']
+#         user = authenticate(request, username=usuario, password=contra)
+#         if user is not None:
+#             login(request, user)
+#             return render(request, 'usuarios/inicio.html')
         
-    else:
-        return render(request, 'usuarios/login.html')
+#         else:
+#             return render(request, 'usuarios/login.html', {'mensaje': 'Credenciales inválidas.'})
+        
+#     else:
+#         return render(request, 'usuarios/login.html')
 
 @login_required
 def edite_profile(request):
