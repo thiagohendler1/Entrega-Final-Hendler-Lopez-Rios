@@ -1,0 +1,98 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %} Tienda {% endblock title %}
+
+{% block active_tienda %}active{% endblock active_tienda %}
+
+{% block content %}
+
+<a href="#" class="boton-scroll">
+    <i class="material-icons">keyboard_arrow_up</i>
+</a>
+
+<div class="page-heading contact-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>TIENDA</h4>
+              <h2>tienda</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contenedor">
+      <h3>¿Querés publicar tu producto?</h3>
+      <button class="boton-rojo"><a href="">HACÉLO ACÁ</a></button>
+    </div>
+
+<div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Publicaciones</h2>
+
+              <div class="form-container">
+                  <!-- Formulario para filtrar por genero -->
+                  <form action="" method="POST" class="left-form"> {% csrf_token %}
+                    <label for="genero-form">Filtrar por genero:</label>
+                    <select name="filter_select" id="genero-form">
+                      <option value="noselect" selected>-</option>
+                      <option value="finanzas">Fianzas</option>
+                      <option value="habitos">Habitos</option>
+                      <option value="desarrollo_personal">Desarrollo personal</option>
+                      <option value="riqueza">Riqueza</option>
+                      <option value="emprendimiento">Emprendimiento</option>
+                      <option value="analisis_tecnico">Analisis Tecnico & Trading</option>
+                    </select>
+                    <input type="submit" value="Filtrar" name="filter_form">
+                  </form>
+
+                  <!-- Formulario para buscar un producto -->
+                  <form action="" method="POST" class="right-form"> {% csrf_token %}
+                    <label for="search-product">Buscar un producto:</label>
+                    <input type="text" name="searched_product" id="search-product" placeholder="Nombre del producto">
+                    <input type="submit" value="Buscar" name="search_form">
+                  </form>
+                  {{ mensaje }}
+              </div>
+            </div>
+          </div>
+          
+          {% for objeto in object_list %}
+
+          <!-- EJEMPLO PUBLICACION -->
+          <div class="col-md-4">
+            <div class="product-item">
+              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_01.jpg' %}" alt=""></a>
+              <div class="down-content">
+                <a href="#"><h4>{{ objeto.titulo_libro }}</h4></a>
+                <h5>Genero: {{ objeto.genero_libro }}</h5>
+                <h6>${{ objeto.precio }}</h6>
+                <p>{{objeto.descripcion|truncatechars:100}}</p>
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <span>Preguntas (-)</span>
+              </div>
+            </div>
+          </div>
+          <!-- End publicacion -->
+
+          {% endfor %}
+
+
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
