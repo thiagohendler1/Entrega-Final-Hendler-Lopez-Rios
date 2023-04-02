@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %}
+{% extends 'gestion_publicaciones/base.html' %}
 
 {% load static %}
 
@@ -31,22 +31,26 @@
 
     <div class="latest-products">
       <div class="container">
+        
+        {% if user.is_authenticated %}
+
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
               <h2>Las publicaciones mas recientes</h2>
-              <a href="{% url 'tienda' %}">ver todas <i class="fa fa-angle-right"></i></a>
+              <a href="#">ver todas <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
-          
+      
           <!-- Publicacion -->
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'core/images/product_01.jpg' %}" alt=""></a>
+              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_03.jpg' %}" alt=""></a>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$25.75</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                <a href="#"><h4>{{objeto_uno.titulo_libro}}</h4></a>
+                <h6>${{objeto_uno.precio}}</h6>
+                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                <p>{{objeto_uno.descripcion|truncatechars:100}}</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
@@ -62,11 +66,12 @@
 
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'core/images/product_02.jpg' %}" alt=""></a>
+              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_02.jpg' %}" alt=""></a>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$30.25</h6>
-                <p>Lorem ipsume dolor sit amet, adipisicing elite. Itaque, corporis nulla aspernatur.</p>
+                <a href="#"><h4>{{objeto_dos.titulo_libro}}</h4></a>
+                <h6>${{objeto_dos.precio}}</h6>
+                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                <p>{{objeto_dos.descripcion|truncatechars:100}}</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
@@ -80,11 +85,12 @@
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'core/images/product_03.jpg' %}" alt=""></a>
+              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_01.jpg' %}" alt=""></a>
               <div class="down-content">
-                <a href="#"><h4>Tittle goes here</h4></a>
-                <h6>$20.45</h6>
-                <p>Sixteen Clothing is free CSS template provided by TemplateMo.</p>
+                <a href="#"><h4>{{objeto_tres.titulo_libro}}</h4></a>
+                <h6>${{objeto_tres.precio}}</h6>
+                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                <p>{{objeto_tres.descripcion|truncatechars:100}}</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
@@ -96,7 +102,19 @@
               </div>
             </div>
           </div>
+
         </div>
+
+        <!-- Si el usuario no esta autenticado, no puede ver las publicaciones recientes -->
+
+        {% else %}
+        
+          <div class="register-to-see">
+          <a href="#" class="filled-button">Iniciar sesion</a>
+          </div>
+
+        {% endif %}
+
       </div>
     </div>
 
@@ -119,12 +137,12 @@
                 <li><a href="#">Emprendimiento</a></li>
                 <li><a href="#">Analisis tecnico & Trading</a></li>
               </ul>
-              <a href="{% url 'register_view' %}" class="filled-button">Registrarse</a>
+              <a href="#" class="filled-button">Registrarse</a>
             </div>
           </div>
           <div class="col-md-6">
             <div class="right-image">
-              <img src="{% static 'core/images/feature-image.jpg' %}" alt="">
+              <img src="{% static 'gestion_publicaciones/images/feature-image.jpg' %}" alt="">
             </div>
           </div>
         </div>
@@ -143,7 +161,7 @@
                   <p>En SUCCESS MINDSET estamos comprometidos con tu desarrollo. Traemos los mejores títulos en libros sobre desarrollo personal, emprendimiento, finanzas y espiritualidad. Con el único propósito y objetivo de que logres desarrollarte al 100% como una persona exitosa.</p>
                 </div>
                 <div class="col-md-4">
-                  <a href="{% url 'tienda' %}" class="filled-button">Comprar ahora</a>
+                  <a href="#" class="filled-button">Comprar ahora</a>
                 </div>
               </div>
             </div>

@@ -7,14 +7,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Success Mindset es una pagina web de compra-venta de libros de desarrollo personal, esoterismo, riqueza, mindfullness, entre otros. Los compradores-vendedores podran publicar y comprar libros, ya sean nuevos o usados.">
-    <meta name="author" content="Felipe Lopez Rios">
+    <meta name="author" content="Felipe Lopez Rios, Thiago Hendler">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <title>{% block title %} {% endblock title %}</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'gestion_publicaciones/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 <!--
 
 TemplateMo 546 Sixteen Clothing
@@ -24,9 +24,9 @@ https://templatemo.com/tm-546-sixteen-clothing
 -->
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{% static 'core/css/fontawesome.css' %}">
-    <link rel="stylesheet" href="{% static 'core/css/templatemo-sixteen.css' %}">
-    <link rel="stylesheet" href="{% static 'core/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'gestion_publicaciones/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'gestion_publicaciones/css/templatemo-sixteen.css' %}">
+    <link rel="stylesheet" href="{% static 'gestion_publicaciones/css/owl.css' %}">
 
   </head>
 
@@ -58,16 +58,16 @@ https://templatemo.com/tm-546-sixteen-clothing
                 </a>
               </li> 
               <li class="nav-item {% block active_tienda %} {% endblock active_tienda %}">
-                <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
+                <a class="nav-link" href="#">Tienda</a>
               </li>
               <li class="nav-item {% block active_generos %} {% endblock active_generos %}">
-                <a class="nav-link" href="{% url 'generos' %}">Generos</a>
+                <a class="nav-link" href="#">Generos</a>
               </li>
               <li class="nav-item {% block active_about %} {% endblock active_about %}">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
+                <a class="nav-link" href="#">About</a>
               </li>
               <li class="nav-item {% block active_iniciarsesion %} {% endblock active_iniciarsesion %}">
-                <a class="nav-link" href="{% url 'login_view' %}">INICIAR SESION</a>
+                <a class="nav-link" href="#">INICIAR SESION</a>
               </li>
             </ul>
           </div>
@@ -102,16 +102,16 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
     <!-- Additional Scripts -->
-    <script src="{% static 'core/js/custom.js' %}"></script>
-    <script src="{% static 'core/js/owl.js' %}"></script>
-    <script src="{% static 'core/js/slick.js' %}"></script>
-    <script src="{% static 'core/js/isotope.js' %}"></script>
-    <script src="{% static 'core/js/accordions.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/js/custom.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/js/owl.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/js/slick.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/js/isotope.js' %}"></script>
+    <script src="{% static 'gestion_publicaciones/js/accordions.js' %}"></script>
 
 
     <script language = "text/Javascript"> 

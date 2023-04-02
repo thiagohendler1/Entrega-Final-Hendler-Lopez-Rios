@@ -162,6 +162,26 @@ a.filled-button:hover {
 	color: #fff;
 }
 
+.register-to-see {
+	background-image: url(../images/register_to_see.jpg);
+	padding: 240px 0px 160px 0px;
+	text-align: center;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* .register_to_see {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.register-to-see-button {
+	margin: auto 0;
+} */
+
 .section-heading {
 	text-align: left;
 	margin-bottom: 60px;
