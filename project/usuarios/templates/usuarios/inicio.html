@@ -19,16 +19,14 @@
         <div class="row">
           <div class="col-md-12">
             <div class="text-content">
-              <h4>BIENVENIDO</h4>
+              <h4>BIENVENIDO {{ mensaje }}</h4>
               <h2>Transforma tu vida con los mejores libros</h2>
             </div>
               <div>
                 {% if request.user.is_authenticated %}
                 <button><a href="{% url 'logout' %}">Salir</a></button>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                  <p class="text-muted small mb-4 mb-lg-0">Hola {{user.username}}</p>
-                  <img src ="#url imagen del avatar" style="height: 40px; width: 45px;">
+                <p class="text-muted small mb-4 mb-lg-0">Hola {{user.username}}</p>
+                <img src ="#url imagen del avatar" style="height: 40px; width: 45px;">
                 {% endif %}
               </div>
           </div>

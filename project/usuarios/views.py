@@ -56,7 +56,6 @@ def register(request):
         form = UserRegisterForm(request.POST)
         print(form)
         if form.is_valid():
-            # form.save()
             usuario = form.cleaned_data['username']
             contra = form.cleaned_data['password1']
             user = authenticate(username=usuario, password=contra)
@@ -75,7 +74,7 @@ def register(request):
 
     return render(request, 'usuarios/register.html', {'form':form})
 
-def login(request):
+def login_view(request):
     
 #FALTA AGREGAR AL HTML las keys de los value. 
     
@@ -87,7 +86,7 @@ def login(request):
             contra = form.cleaned_data['password']
             
             user = authenticate(username = usuario, password = contra)
-            
+            print(user)
             if user is not None:
                 login(request, user)
                 return render(request, 'usuarios/inicio.html', {'mensaje': f"Bienvenido/a {usuario}"})
@@ -98,12 +97,14 @@ def login(request):
         else: 
             return render(request, 'usuarios/inicio.html', {'mensaje': 'Formulario erroneo'})
     
-    form = AuthenticationForm()
+    else:
+        form = AuthenticationForm()
     
     return render(request, 'usuarios/login.html', {'form': form})
 
 # def login(request):
 #     if request.method == 'POST':
+#         print(request.POST)
 #         usuario = request.POST['username']
 #         contra = request.POST['password']
 #         user = authenticate(request, username=usuario, password=contra)

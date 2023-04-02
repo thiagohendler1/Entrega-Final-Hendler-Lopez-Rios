@@ -1,8 +1,14 @@
-{% block contenido_que_cambia %}
+{% extends 'usuarios/base.html' %}
+
+{% load static %}
+
+{% block title %} Deslogueados {% endblock title %} 
+
+{% block content%}
 <body>
     <div>
         <h1>Deslogueados</h1>
         <button><a href="{% url 'login' %}">Vuelve a entrar</a></button>
     </div>
 </body>
-{% endblock %}
+{% endblock content %}
