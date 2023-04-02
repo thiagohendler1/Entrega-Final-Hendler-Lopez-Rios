@@ -24,3 +24,33 @@ class HomeView(TemplateView):
         objeto_tres = objetos[2]
         context.update({'objeto_uno': objeto_uno, 'objeto_dos': objeto_dos, 'objeto_tres': objeto_tres})
         return context
+
+# LOGIN REQUIRED
+def TiendaView(request):
+    object_list = Publicacion.objects.all()
+    
+    # No API-Form
+    if request.method == 'POST':
+        if 'filter_form' in request.POST:
+            if request.POST['filter_select'] != 'noselect':
+                seleccion = request.POST['filter_select']
+                object_list = Publicacion.objects.filter(genero_libro=seleccion)
+                mensaje = f'Haz filtrado por {seleccion}'
+                
+                return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list, 'mensaje': mensaje})
+            
+            else:
+                object_list = Publicacion.objects.all()
+                return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list})
+        
+        elif 'search_form' in request.POST:
+            if request.POST['searched_product'] == '' or request.POST['searched_product'].isspace():
+                object_list = Publicacion.objects.all()
+                return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list})
+            
+            else:
+                object_list = Publicacion.objects.filter(titulo_libro__icontains=request.POST['searched_product'].strip())
+                mensaje = f'Haz buscado "{request.POST["searched_product"]}"'
+                return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list, 'mensaje': mensaje})
+        
+    return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list})
