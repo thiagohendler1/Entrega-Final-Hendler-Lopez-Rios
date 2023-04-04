@@ -53,21 +53,21 @@ https://templatemo.com/tm-546-sixteen-clothing
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item {% block active_inicio %} {% endblock active_inicio %}">
-                <a class="nav-link" href="#">Inicio
+                <a class="nav-link" href="{% url 'inicio' %}">Inicio
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item {% block active_tienda %} {% endblock active_tienda %}">
-                <a class="nav-link" href="#">Tienda</a>
+                <a class="nav-link" href="{% url 'tienda' %}">Tienda</a>
               </li>
               <li class="nav-item {% block active_generos %} {% endblock active_generos %}">
-                <a class="nav-link" href="#">Generos</a>
+                <a class="nav-link" href="{% url 'generos' %}">Generos</a>
               </li>
               <li class="nav-item {% block active_about %} {% endblock active_about %}">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="{% url 'sobre_nosotros' %}">About</a>
               </li>
               <li class="nav-item {% block active_iniciarsesion %} {% endblock active_iniciarsesion %}">
-                <a class="nav-link" href="#">INICIAR SESION</a>
+                <a class="nav-link" href="{% url 'login' %}">INICIAR SESION</a>
               </li>
             </ul>
           </div>
