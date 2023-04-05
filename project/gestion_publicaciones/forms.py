@@ -16,10 +16,11 @@ class NuevaPublicacionForm(forms.ModelForm):
             'autor_libro': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autor del libro'}),
             'editorial_libro': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Editorial del libro'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Añade una descripcion', 'required': False}),
-            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Valor del producto', 'maxlenght': '12', 'type': 'number'}),
-            'vendedor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'vendedor_id', 'type': 'hidden'}),
+            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Valor del producto', 'maxlenght': '12', 'type': 'number', 'step': '.01'}),
+            'vendedor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'vendedor_id', 'type': 'hidden', 'required': False}),
             'telefono_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefono de contacto', 'type': 'number'}),
-            'email_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email de contacto'})
+            'email_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email de contacto'}),
+            'imagen_libro': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Editorial del libro'})
         }
         
 

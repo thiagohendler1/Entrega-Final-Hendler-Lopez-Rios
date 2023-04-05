@@ -20,7 +20,7 @@ class Publicacion(models.Model):
     imagen_libro = models.ImageField(null=True, blank=True, upload_to='libros_publicaciones')
     descripcion = models.TextField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    vendedor = models.ForeignKey(User, on_delete=models.CASCADE)
+    vendedor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     telefono_contacto = models.IntegerField()
     email_contacto = models.EmailField()
