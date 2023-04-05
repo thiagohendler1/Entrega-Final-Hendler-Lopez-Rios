@@ -10,9 +10,12 @@
 
 <!-- Banner Starts Here -->
     
+    <!-- BOTON VOLVER ARRIBA -->
+
     <a href="#" class="boton-scroll">
       <i class="material-icons">keyboard_arrow_up</i>
     </a>
+
 
     <div class="page-heading contact-heading header-text">
       <div class="container">
@@ -38,14 +41,14 @@
           <div class="col-md-12">
             <div class="section-heading">
               <h2>Las publicaciones mas recientes</h2>
-              <a href="#">ver todas <i class="fa fa-angle-right"></i></a>
+              <a href="{% url 'tienda' %}#ank-for-see-all">ver todas <i class="fa fa-angle-right"></i></a>
             </div>
           </div>
       
           <!-- Publicacion -->
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_03.jpg' %}" alt=""></a>
+              <a href="#"><img src="{{ objeto_uno.imagen_libro.url }}" alt=""></a>
               <div class="down-content">
                 <a href="#"><h4>{{objeto_uno.titulo_libro}}</h4></a>
                 <h6>${{objeto_uno.precio}}</h6>
@@ -66,7 +69,7 @@
 
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_02.jpg' %}" alt=""></a>
+              <a href="#"><img src="{{ objeto_dos.imagen_libro.url }}" alt=""></a>
               <div class="down-content">
                 <a href="#"><h4>{{objeto_dos.titulo_libro}}</h4></a>
                 <h6>${{objeto_dos.precio}}</h6>
@@ -85,7 +88,7 @@
           </div>
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_01.jpg' %}" alt=""></a>
+              <a href="#"><img src="{{ objeto_tres.imagen_libro.url }}" alt=""></a>
               <div class="down-content">
                 <a href="#"><h4>{{objeto_tres.titulo_libro}}</h4></a>
                 <h6>${{objeto_tres.precio}}</h6>

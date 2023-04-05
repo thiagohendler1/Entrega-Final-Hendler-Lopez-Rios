@@ -27,10 +27,10 @@
 
     <div class="contenedor">
       <h3>¿Querés publicar tu producto?</h3>
-      <button class="boton-rojo"><a href="">HACÉLO ACÁ</a></button>
+      <button class="boton-rojo"><a href="{% url 'crear_publicacion' %}">HACÉLO ACÁ</a></button>
     </div>
 
-<div class="latest-products">
+<div class="latest-products" id="ank-for-see-all">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -69,10 +69,10 @@
           <!-- EJEMPLO PUBLICACION -->
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{% static 'gestion_publicaciones/images/product_01.jpg' %}" alt=""></a>
+              <a href="#"><img src="{{ objeto.imagen_libro.url }}" alt=""></a>
               <div class="down-content">
                 <a href="#"><h4>{{ objeto.titulo_libro }}</h4></a>
-                <h5>Genero: {{ objeto.genero_libro }}</h5>
+                <h5>Genero: {{ objeto.get_genero_libro_display }}</h5>
                 <h6>${{ objeto.precio }}</h6>
                 <p>{{objeto.descripcion|truncatechars:100}}</p>
                 <ul class="stars">
@@ -94,5 +94,17 @@
         </div>
       </div>
     </div>
+
+    <script>
+    // Función para hacer scroll hacia abajo cuando se filtra por un producto
+    function scrollDown() {
+      window.scrollBy(0, window.innerHeight);
+    }
+
+    // Si el formulario se envió, hacer scroll hacia abajo
+    {% if request.method == 'POST' %}
+      scrollDown();
+    {% endif %}
+    </script>
 
 {% endblock content %}
