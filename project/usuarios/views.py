@@ -64,7 +64,7 @@ def register(request):
             if user is not None:
                 login(user)
                 mensaje = f"Bienvenido/a {request.POST['username']}"
-                return render(request, 'usuarios/inicio.html', {'mensaje':mensaje})
+                return render(request, 'gestion_publicaciones/inicio.html', {'mensaje':mensaje})
 
         else:
             return HttpResponse('Debes completar todos los campos para el registro...')
@@ -89,13 +89,13 @@ def login_view(request):
             print(user)
             if user is not None:
                 login(request, user)
-                return render(request, 'usuarios/inicio.html', {'mensaje': f"Bienvenido/a {usuario}"})
+                return render(request, 'gestion_publicaciones/inicio.html', {'mensaje': f"Bienvenido/a {usuario}"})
             
             else:
-                return render(request, 'usuarios/inicio.html', {'mensaje': 'Error en los datos.'})
+                return render(request, 'gestion_publicaciones/inicio.html', {'mensaje': 'Error en los datos.'})
             
         else: 
-            return render(request, 'usuarios/inicio.html', {'mensaje': 'Formulario erroneo'})
+            return render(request, 'gestion_publicaciones/inicio.html', {'mensaje': 'Formulario erroneo'})
     
     else:
         form = AuthenticationForm()
