@@ -90,4 +90,10 @@ class PublicacionCreateView(LoginRequiredMixin, CreateView):
 class PublicacionDetailView(LoginRequiredMixin, DetailView):
     model = Publicacion
     template_name = 'gestion_publicaciones/detalle_publicacion.html'
-    
+
+
+class PublicacionUpdateView(LoginRequiredMixin, UpdateView):
+    model = Publicacion
+    template_name = 'gestion_publicaciones/editar_publicacion.html'
+    success_url = reverse_lazy('tienda')
+    form_class = EditarPublicacionForm

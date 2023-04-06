@@ -1212,3 +1212,8 @@ footer .inner-content p a {
 .li-up {
 	margin-bottom: 10px;
 }
+
+#imagen_libro-clear_id {
+	display: inline;
+	transform: scale(0.5);
+}

@@ -69,7 +69,18 @@
           <!-- EJEMPLO PUBLICACION -->
           <div class="col-md-4">
             <div class="product-item">
-              <a href="{% url 'detalle_publicacion' objeto.pk %}"><img src="{{ objeto.imagen_libro.url }}" alt=""></a>
+
+              {% if objeto.vendedor == request.user %}
+              <a href="{% url 'editar_publicacion' objeto.pk %}">EDITAR</a>
+              {% endif %}
+
+              <a href="{% url 'detalle_publicacion' objeto.pk %}">
+                {% if objeto.imagen_libro %}
+                <img src="{{ objeto.imagen_libro.url }}" alt="">
+                {% else %}
+                <img src="" alt="">
+                {% endif %}
+              </a>
               <div class="down-content">
                 <a href="{% url 'detalle_publicacion' objeto.pk %}"><h4>{{ objeto.titulo_libro }}</h4></a>
                 <h5>Genero: {{ objeto.get_genero_libro_display }}</h5>

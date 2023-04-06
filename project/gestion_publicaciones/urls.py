@@ -1,11 +1,12 @@
 from django.urls import path
-from gestion_publicaciones.views import HomeView, TiendaView, GenerosView, AboutView, PublicacionCreateView, PublicacionDetailView
+from gestion_publicaciones.views import HomeView, TiendaView, GenerosView, AboutView, PublicacionCreateView, PublicacionDetailView, PublicacionUpdateView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='inicio'),
     path('shop/', TiendaView, name='tienda'),
     path('shop/create_publication/', PublicacionCreateView.as_view(), name='crear_publicacion'),
     path('shop/publication_detail/<pk>/', PublicacionDetailView.as_view(), name='detalle_publicacion'),
+    path('shop/update_publication/<pk>/', PublicacionUpdateView.as_view(), name='editar_publicacion'),
     path('genres/', GenerosView, name='generos'),
     path('about/', AboutView.as_view(), name='sobre_nosotros'),
 ]
