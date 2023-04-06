@@ -1,0 +1,88 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle de la Publicacion {% endblock title %}
+
+{% block active_tienda %}active{% endblock active_tienda %}
+
+{% block content %}
+
+<!-- Banner Starts Here -->
+    
+    <!-- BOTON VOLVER ARRIBA -->
+
+    <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>TIENDA</h4>
+              <h2>DETALLE PUBLICACION</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner Ends Here -->
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2></h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="{{ object.imagen_libro.url }}" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4>{{ object.get_genero_libro_display }}</h4>
+              <h3>{{ object.titulo_libro }}</h3>
+              <span>$ {{ object.precio }}</span>
+              <br>
+              <span>{{ object.editorial_libro }}</span>
+              <br>
+              <span>{{ object.autor_libro }}</span>
+              <br>
+              
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="book-description">
+              <br>
+              <br>
+              <span>Descripcion</span>
+              <p>{{ object.descripcion }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quam obcaecati cum harum neque, assumenda blanditiis at officia facere quas adipisci nihil iste, accusamus fugit accusantium porro. Quam, hic deserunt.</p>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="book-messages">
+              <br>
+              <br>
+              <span>Preguntas</span>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique esse cupiditate assumenda, ipsam earum repudiandae. Natus aliquid, molestias ea itaque eaque in dicta quis beatae sint maxime quisquam quidem vitae.</p>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

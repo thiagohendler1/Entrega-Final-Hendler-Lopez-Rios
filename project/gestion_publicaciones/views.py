@@ -75,7 +75,7 @@ class AboutView(TemplateView):
 
 # -------- CRUD de publicaciones --------
 
-# LOGIN REQUIRED MIXIN
+
 class PublicacionCreateView(LoginRequiredMixin, CreateView):
     model = Publicacion
     template_name = 'gestion_publicaciones/crear_publicacion.html'
@@ -85,3 +85,9 @@ class PublicacionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
         return super(PublicacionCreateView, self).form_valid(form)
+    
+    
+class PublicacionDetailView(LoginRequiredMixin, DetailView):
+    model = Publicacion
+    template_name = 'gestion_publicaciones/detalle_publicacion.html'
+    
