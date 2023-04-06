@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 # ------ Importaciones para el crud ------
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.views.decorators.http import require_http_methods
 # ----------------------------------------
 from django.contrib.auth.models import User

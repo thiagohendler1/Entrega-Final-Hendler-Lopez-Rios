@@ -109,44 +109,49 @@
     </div>
 
     <script>
-    // Función para hacer scroll hacia abajo cuando se filtra por un producto
+    // funcion para hacer scroll hacia abajo cuando se filtra o se busca un producto
     function scrollDown() {
-      window.scrollBy(0, window.innerHeight);
+    const element = document.querySelector('#ank-for-see-all');
+    element.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Si el formulario se envió, hacer scroll hacia abajo
     {% if request.method == 'POST' %}
+    const element = document.querySelector('#ank-for-see-all');
+    if (element) {
       scrollDown();
+    }
     {% endif %}
     </script>
 
     <script>
-    // Obtener todos los enlaces de eliminación
+    // Funcion para eliminar una publicacion de la BBDD por confirmacion
       const eliminarLinks = document.querySelectorAll('.eliminar-link');
 
       // Iterar sobre los enlaces y agregar un evento de clic
       eliminarLinks.forEach(link => {
         link.addEventListener('click', event => {
-          // Prevenir el comportamiento predeterminado del enlace
           event.preventDefault();
 
-          // Mostrar ventana emergente de confirmación
+          // Ventana emergente de confirmación
           const confirmarEliminar = confirm('¿Seguro que querés eliminar la publicación?');
 
-          // Si el usuario confirma la eliminación
+          // Si el usuario confirma eliminar la publicacion
           if (confirmarEliminar) {
-            // Obtener la URL de eliminación del enlace
             const urlEliminar = link.getAttribute('href');
 
-            // Enviar una solicitud al servidor para eliminar el objeto correspondiente de la base de datos
+            // Solicitud correspondiente al servidor para eliminar el objeto de la base de datos
             fetch(urlEliminar, {
               method: 'DELETE',
               headers: {
-                'X-CSRFToken': '{{ csrf_token }}' // Agregar el token CSRF requerido por Django
+                'X-CSRFToken': '{{ csrf_token }}'
               }
             }).then(response => {
-              // Redirigir a la página de inicio después de la eliminación exitosa
-              window.location.href = "{% url 'inicio' %}";
+              // Mostrar mensaje de alerta
+              alert('Publicación eliminada exitosamente.');
+
+              // Actualizar (redirigir a la misma pagina) después de la eliminación exitosa
+              window.location.href = "{% url 'tienda' %}";
             }).catch(error => {
               console.error('Error al eliminar la publicación:', error);
             });
