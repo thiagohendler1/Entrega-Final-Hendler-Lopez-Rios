@@ -72,6 +72,8 @@
 
               {% if objeto.vendedor == request.user %}
               <a href="{% url 'editar_publicacion' objeto.pk %}">EDITAR</a>
+
+              <a href="{% url 'eliminar_publicacion' objeto.pk %}" class="eliminar-link">ELIMINAR</a>
               {% endif %}
 
               <a href="{% url 'detalle_publicacion' objeto.pk %}">
@@ -116,6 +118,41 @@
     {% if request.method == 'POST' %}
       scrollDown();
     {% endif %}
+    </script>
+
+    <script>
+    // Obtener todos los enlaces de eliminación
+      const eliminarLinks = document.querySelectorAll('.eliminar-link');
+
+      // Iterar sobre los enlaces y agregar un evento de clic
+      eliminarLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          // Prevenir el comportamiento predeterminado del enlace
+          event.preventDefault();
+
+          // Mostrar ventana emergente de confirmación
+          const confirmarEliminar = confirm('¿Seguro que querés eliminar la publicación?');
+
+          // Si el usuario confirma la eliminación
+          if (confirmarEliminar) {
+            // Obtener la URL de eliminación del enlace
+            const urlEliminar = link.getAttribute('href');
+
+            // Enviar una solicitud al servidor para eliminar el objeto correspondiente de la base de datos
+            fetch(urlEliminar, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRFToken': '{{ csrf_token }}' // Agregar el token CSRF requerido por Django
+              }
+            }).then(response => {
+              // Redirigir a la página de inicio después de la eliminación exitosa
+              window.location.href = "{% url 'inicio' %}";
+            }).catch(error => {
+              console.error('Error al eliminar la publicación:', error);
+            });
+          }
+        });
+      });
     </script>
 
 {% endblock content %}

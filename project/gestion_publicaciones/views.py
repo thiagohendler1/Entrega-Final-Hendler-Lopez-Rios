@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 # ------ Importaciones para el crud ------
 from django.views.generic import TemplateView, ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.decorators.http import require_http_methods
 # ----------------------------------------
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -98,3 +100,10 @@ class PublicacionUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'gestion_publicaciones/editar_publicacion.html'
     success_url = reverse_lazy('tienda')
     form_class = EditarPublicacionForm
+    
+
+@require_http_methods(['DELETE'])
+def PublicacionDeleteView(request, pk):
+    publi = get_object_or_404(Publicacion, pk=pk)
+    publi.delete()
+    return HttpResponse(status=204)
