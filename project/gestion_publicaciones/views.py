@@ -107,3 +107,19 @@ def PublicacionDeleteView(request, pk):
     publi = get_object_or_404(Publicacion, pk=pk)
     publi.delete()
     return HttpResponse(status=204)
+
+
+# -------- MENSAJES de las publicaciones --------
+
+
+class MensajeView(LoginRequiredMixin, CreateView):
+    model = Mensaje
+    template_name = 'gestion_publicaciones/mensaje.html'
+    form_class = MensajeForm
+    
+    def form_valid(self, form):
+        form.instance.publicacion_mensaje_id = self.kwargs['pk']
+        return super(MensajeView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('detalle_publicacion', kwargs={'pk': self.kwargs['pk']})

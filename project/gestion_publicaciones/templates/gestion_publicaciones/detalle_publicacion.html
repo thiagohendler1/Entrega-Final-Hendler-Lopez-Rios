@@ -10,8 +10,6 @@
 
 <!-- Banner Starts Here -->
     
-    <!-- BOTON VOLVER ARRIBA -->
-
     <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
       <div class="container">
         <div class="row">
@@ -57,28 +55,48 @@
             <div class="book-description">
               <br>
               <br>
-              <span>Descripcion</span>
+              <span><strong>Descripcion</strong></span>
               <p>{{ object.descripcion }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quam obcaecati cum harum neque, assumenda blanditiis at officia facere quas adipisci nihil iste, accusamus fugit accusantium porro. Quam, hic deserunt.</p>
               <br>
+
+              <span>Fecha de publicacion: {{ object.fecha_publicacion|date:"j F, Y" }}</span>
               <br>
               <br>
               <br>
-              <br>
-              
+
             </div>
           </div>
           <div class="col-md-12">
             <div class="book-messages">
+              <span><strong>Preguntas</strong></span>
+              <br>
+              <span>¿Querés dejar tu pregunta?</span>
+              <button class="boton-rojo"><a href="{% url 'mensaje' object.pk %}">HACÉLO ACÁ</a></button>
               <br>
               <br>
-              <span>Preguntas</span>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique esse cupiditate assumenda, ipsam earum repudiandae. Natus aliquid, molestias ea itaque eaque in dicta quis beatae sint maxime quisquam quidem vitae.</p>
               <br>
               <br>
-              <br>
-              <br>
-              <br>
-              
+
+              <div class="container message-content">
+
+                {% if not object.mensajes.all %}
+                
+                <span>Parece que todavia no dejaron ningun mensaje...</span>
+
+                {% else %}
+                
+                    {% for msg in object.mensajes.all %}
+
+                        <span><strong>Mensaje: </strong>{{ msg.mensaje }}</span>
+                        <br>
+                        <span><small>{{ msg.fecha_mensaje }}</small></span>
+                        <hr>
+                    
+                    {% endfor %}
+
+                {% endif %}
+
+              </div>
             </div>
           </div>
         </div>
