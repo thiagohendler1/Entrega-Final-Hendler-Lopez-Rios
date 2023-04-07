@@ -2,13 +2,29 @@
 
 {% load static %}
 
-{% block title %} Deslogueados {% endblock title %} 
+{% block title %} LOGOUT {% endblock title %} 
 
-{% block content%}
-<body>
-    <div>
-        <h1>Deslogueados</h1>
-        <button><a href="{% url 'login' %}">Vuelve a entrar</a></button>
+{% block active_iniciarsesion %}active{% endblock active_iniciarsesion %}
+
+{% block content %}
+<div class="page-heading contact-heading header-text page-heading-login">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <div class="text-content">
+            <h4>LOGOUT</h4>
+            <h2>Cerraste sesión</h2>
+        </div>
+        </div>
     </div>
-</body>
+    </div>
+    </div>
+    <div class="contenedor">
+        <div class="want-to-publicy">
+        <h3>Puede seleccionar una opción</h3>
+        <button class="boton-rojo"><a href="{% url 'inicio' %}">Ir a inicio</a></button>
+        <button class="boton-rojo"><a href="{% url 'login' %}">Volver a iniciar sesión</a></button>
+        </div>
+    </div>
+    
 {% endblock content %}

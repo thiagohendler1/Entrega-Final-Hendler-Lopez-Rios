@@ -91,11 +91,8 @@ def login_view(request):
                 login(request, user)
                 return render(request, 'gestion_publicaciones/inicio.html', {'mensaje': f"Bienvenido/a {usuario}"})
             
-            else:
-                return render(request, 'gestion_publicaciones/inicio.html', {'mensaje': 'Error en los datos.'})
-            
-        else: 
-            return render(request, 'gestion_publicaciones/inicio.html', {'mensaje': 'Formulario erroneo'})
+        else:
+            return render(request, 'usuarios/login.html', {'mensaje': 'El usuario y la contraseña no coinciden', 'form': form})
     
     else:
         form = AuthenticationForm()
@@ -140,3 +137,4 @@ def edite_profile(request):
         myform = UserEditForm(initial={'email': usuario.email})
     
     return render(request, 'edit_profile.html', {'myform': myform, 'usuario': usuario})
+

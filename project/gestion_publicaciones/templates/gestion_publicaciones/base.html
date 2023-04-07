@@ -64,11 +64,19 @@ https://templatemo.com/tm-546-sixteen-clothing
                 <a class="nav-link" href="{% url 'generos' %}">Generos</a>
               </li>
               <li class="nav-item {% block active_about %} {% endblock active_about %}">
-                <a class="nav-link" href="{% url 'sobre_nosotros' %}">About</a>
+                <a class="nav-link" href="{% url 'sobre_nosotros' %}">Sobre nosotros</a>
               </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item {% block active_logout %} {% endblock active_logout %}">
+              <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+            </li>
+              <p class="text-muted small mb-4 mb-lg-0">Hola {{user.username}}</p>
+              <img src ="{{imagen}}" style="height: 40px; width: 45px;">
+              {% else %}  
               <li class="nav-item {% block active_iniciarsesion %} {% endblock active_iniciarsesion %}">
                 <a class="nav-link" href="{% url 'login' %}">INICIAR SESION</a>
               </li>
+              {% endif %}
             </ul>
           </div>
         </div>

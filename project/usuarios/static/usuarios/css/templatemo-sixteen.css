@@ -58,6 +58,7 @@ html {
 	align-items: center;
 	justify-content: center;
 	height: 25vh;
+	margin-top: 20px;
 }
 
 .boton-rojo {
@@ -82,21 +83,19 @@ html {
 
 .form-container {
 	overflow: hidden;
-	/* Clearfix para asegurarse de que el contenedor cubra ambos formularios */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .left-form {
 	float: left;
-	/* Hace que el formulario se coloque a la izquierda */
 	width: 50%;
-	/* Establece el ancho del formulario en un 50% del contenedor */
 }
 
 .right-form {
 	float: right;
-	/* Hace que el formulario se coloque a la derecha */
 	width: 50%;
-	/* Establece el ancho del formulario en un 50% del contenedor */
 }
 
 p {
@@ -161,6 +160,26 @@ a.filled-button:hover {
 	background-color: #121212;
 	color: #fff;
 }
+
+.register-to-see {
+	background-image: url(../images/register_to_see.jpg);
+	padding: 240px 0px 160px 0px;
+	text-align: center;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* .register_to_see {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.register-to-see-button {
+	margin: auto 0;
+} */
 
 .section-heading {
 	text-align: left;
@@ -954,6 +973,7 @@ footer .inner-content p a {
 	border: 1px solid #eee;
 	border-radius: 0px;
 	margin-bottom: 30px;
+	margin-left: 10px;
 }
 
 .contact-form input:focus {
@@ -1105,6 +1125,15 @@ footer .inner-content p a {
 		margin-top: 30px;
 		margin-left: 0px;
 	}
+	.form-container {
+		flex-direction: column;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.form-container form {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
 }
 
 @media (max-width: 992px) {
@@ -1191,4 +1220,192 @@ footer .inner-content p a {
 
 .li-up {
 	margin-bottom: 10px;
+}
+
+#imagen_libro-clear_id {
+	display: inline;
+	transform: scale(0.5);
+}
+
+.want-to-publicy {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 40vh;
+	width: 70vh;
+	border-radius: 10px;
+	background-color: #F5F5F5;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+	transition: all 1s ease;
+}
+
+.want-to-publicy:hover {
+	transform: translateY(2px);
+	box-shadow: 5px 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+input.filter-search-button {
+	background-color: #f33f3f;
+	color: #fff;
+	font-size: 14px;
+	text-transform: capitalize;
+	font-weight: 300;
+	padding: 5px 20px;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.3s;
+	border: none;
+}
+
+input.filter-search-button:hover {
+	background-color: #121212;
+	color: #fff;
+}
+
+select#genero-form {
+	border: none;
+	border-radius: 5px;
+	background-color: #F0F0F0;
+	padding: 5px;
+}
+
+input#search-product {
+	border: none;
+	border-radius: 5px;
+	background-color: #F0F0F0;
+	padding: 5px;
+}
+
+
+.container-detail {
+	padding: 10px 0px 10px 0px;
+}
+
+.container-detail-title .detail-title-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+.container-detail-price .detail-price-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+.container-detail-editorial .detail-editorial-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+.container-detail-author .detail-author-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+
+.container-detail-title .detail-title-title h1 {
+	font-size: 2em;
+}
+
+.container-detail-price .detail-price-price span {
+	font-size: 2em;
+}
+
+.container-detail-genre h4 {
+	text-transform: uppercase;
+}
+
+.description-content {
+	padding: 20px 0px 20px 0px;
+}
+
+.publication-date {
+	margin-bottom: 80px;
+	font-style: italic;
+	color: #6b6b6b;
+}
+
+#id_imagen_libro {
+	height: 64px;
+	border: none;
+	padding-left: 0px;
+}
+
+#id_genero_libro {
+	margin-bottom: 30px;
+	margin-left: 10px;
+}
+
+#id_descripcion {
+	margin-left: 10px;
+}
+
+.non-mandatory-fields {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 20vh;
+	width: 37vh;
+	border-radius: 10px;
+	background-color: #F5F5F5;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.how-to-modify {
+	padding: 50px 30px 50px 30px;
+}
+
+#id_mensaje {
+	margin-left: 60px;
+}
+
+.button-send-message {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.button-to-modify {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 120px;
+	margin-top: 10px;
+	background-color: #f33f3f;
+	color: #fff;
+	font-size: 14px;
+	text-transform: capitalize;
+	font-weight: 300;
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.3s;
+}
+
+.button-to-modify:hover {
+	background-color: #121212;
+	color: #fff;
+}
+
+.button-to-delete {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 30px;
+	margin-top: 10px;
+	background-color: #f33f3f;
+	color: #fff;
+	font-size: 14px;
+	text-transform: capitalize;
+	font-weight: 300;
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	transition: all 0.3s;
+}
+
+.button-to-delete:hover {
+	background-color: #121212;
+	color: #fff;
 }

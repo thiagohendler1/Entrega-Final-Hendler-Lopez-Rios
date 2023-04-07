@@ -14,7 +14,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'usuarios/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 <!--
 
 TemplateMo 546 Sixteen Clothing
@@ -24,9 +24,9 @@ https://templatemo.com/tm-546-sixteen-clothing
 -->
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="{% static 'core/css/fontawesome.css' %}">
-    <link rel="stylesheet" href="{% static 'core/css/templatemo-sixteen.css' %}">
-    <link rel="stylesheet" href="{% static 'core/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'usuarios/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'usuarios/css/templatemo-sixteen.css' %}">
+    <link rel="stylesheet" href="{% static 'usuarios/css/owl.css' %}">
 
   </head>
 
@@ -64,16 +64,18 @@ https://templatemo.com/tm-546-sixteen-clothing
                 <a class="nav-link" href="{% url 'generos' %}">Generos</a>
               </li>
               <li class="nav-item {% block active_about %} {% endblock active_about %}">
-                <a class="nav-link" href="{% url 'sobre_nosotros' %}">About</a>
+                <a class="nav-link" href="{% url 'sobre_nosotros' %}">Sobre nosotros</a>
               </li>
-              {% if not request.user.is_authenticated %}
+              {% if request.user.is_authenticated %}
+              <li class="nav-item {% block active_logout %} {% endblock active_logout %}">
+              <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+              </li>
+              <p class="text-muted small mb-4 mb-lg-0">Hola {{user.username}}</p>
+              <img src ="{{imagen}}" style="height: 40px; width: 45px;">
+              {% else %}  
               <li class="nav-item {% block active_iniciarsesion %} {% endblock active_iniciarsesion %}">
                 <a class="nav-link" href="{% url 'login' %}">INICIAR SESION</a>
               </li>
-              {% endif %}
-              {% if request.user.is_authenticated %}
-              <p class="text-muted small mb-4 mb-lg-0">Hola {{user.username}}</p>
-              <img src ="{{imagen}}" style="height: 40px; width: 45px;">
               {% endif %}
             </ul>
           </div>
@@ -108,16 +110,16 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'usuarios/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'usuarios/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 
     <!-- Additional Scripts -->
-    <script src="{% static 'core/js/custom.js' %}"></script>
-    <script src="{% static 'core/js/owl.js' %}"></script>
-    <script src="{% static 'core/js/slick.js' %}"></script>
-    <script src="{% static 'core/js/isotope.js' %}"></script>
-    <script src="{% static 'core/js/accordions.js' %}"></script>
+    <script src="{% static 'usuarios/js/custom.js' %}"></script>
+    <script src="{% static 'usuarios/js/owl.js' %}"></script>
+    <script src="{% static 'usuarios/js/slick.js' %}"></script>
+    <script src="{% static 'usuarios/js/isotope.js' %}"></script>
+    <script src="{% static 'usuarios/js/accordions.js' %}"></script>
 
 
     <script language = "text/Javascript"> 
