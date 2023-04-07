@@ -1350,3 +1350,12 @@ input#search-product {
 	background-color: #F5F5F5;
 	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
 }
+
+#id_mensaje {
+	margin-left: 60px;
+}
+
+.button-send-message {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
