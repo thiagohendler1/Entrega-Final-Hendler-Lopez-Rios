@@ -8,86 +8,95 @@
 
 {% block content %}
 
-<a href="#" class="boton-scroll">
-    <i class="material-icons">keyboard_arrow_up</i>
-</a>
+  <a href="#" class="boton-scroll">
+      <i class="material-icons">keyboard_arrow_up</i>
+  </a>
 
-<div class="page-heading contact-heading header-text">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="text-content">
-              <h4>TIENDA</h4>
-              <h2>tienda</h2>
-            </div>
+  <div class="page-heading contact-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-content">
+            <h4>TIENDA</h4>
+            <h2>tienda</h2>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="contenedor">
+  <div class="contenedor">
+    <div class="want-to-publicy">
       <h3>¿Querés publicar tu producto?</h3>
       <button class="boton-rojo"><a href="{% url 'crear_publicacion' %}">HACÉLO ACÁ</a></button>
     </div>
+  </div>
 
-<div class="latest-products" id="ank-for-see-all">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Publicaciones</h2>
+  <div class="latest-products" id="ank-for-see-all">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Publicaciones</h2>
 
-              <div class="form-container">
-                  <!-- Formulario para filtrar por genero -->
-                  <form action="" method="POST" class="left-form"> {% csrf_token %}
-                    <label for="genero-form">Filtrar por genero:</label>
-                    <select name="filter_select" id="genero-form">
-                      <option value="noselect" selected>-</option>
-                      <option value="finanzas">Fianzas</option>
-                      <option value="habitos">Habitos</option>
-                      <option value="desarrollo_personal">Desarrollo personal</option>
-                      <option value="riqueza">Riqueza</option>
-                      <option value="emprendimiento">Emprendimiento</option>
-                      <option value="analisis_tecnico">Analisis Tecnico & Trading</option>
-                    </select>
-                    <input type="submit" value="Filtrar" name="filter_form">
-                  </form>
+            <div class="form-container">
 
-                  <!-- Formulario para buscar un producto -->
-                  <form action="" method="POST" class="right-form"> {% csrf_token %}
-                    <label for="search-product">Buscar un producto:</label>
-                    <input type="text" name="searched_product" id="search-product" placeholder="Nombre del producto">
-                    <input type="submit" value="Buscar" name="search_form">
-                  </form>
-                  {{ mensaje }}
-              </div>
+              <!-- Formulario para filtrar por genero -->
+              <form action="" method="POST" class="left-form"> {% csrf_token %}
+                <label for="genero-form">Filtrar por genero:</label>
+                <select name="filter_select" id="genero-form">
+                  <option value="noselect" selected>-</option>
+                  <option value="finanzas">Fianzas</option>
+                  <option value="habitos">Habitos</option>
+                  <option value="desarrollo_personal">Desarrollo personal</option>
+                  <option value="riqueza">Riqueza</option>
+                  <option value="emprendimiento">Emprendimiento</option>
+                  <option value="analisis_tecnico">Analisis Tecnico & Trading</option>
+                </select>
+                <input type="submit" value="Filtrar" name="filter_form" class="filter-search-button">
+              </form>
+
+              <!-- Formulario para buscar un producto -->
+              <form action="" method="POST" class="right-form"> {% csrf_token %}
+                <label for="search-product">Buscar un producto:</label>
+                <input type="text" name="searched_product" id="search-product" placeholder="Nombre del producto">
+                <input type="submit" value="Buscar" name="search_form" class="filter-search-button">
+              </form>
             </div>
+            <br>
+            {{ mensaje }}
           </div>
-          
-          {% for objeto in object_list %}
+        </div>
+        
+        {% for objeto in object_list %}
 
           <!-- EJEMPLO PUBLICACION -->
           <div class="col-md-4">
             <div class="product-item">
 
               {% if objeto.vendedor == request.user %}
-              <a href="{% url 'editar_publicacion' objeto.pk %}">EDITAR</a>
-
-              <a href="{% url 'eliminar_publicacion' objeto.pk %}" class="eliminar-link">ELIMINAR</a>
+                <a href="{% url 'editar_publicacion' objeto.pk %}" class="button-to-modify">EDITAR</a>
+                <a href="{% url 'eliminar_publicacion' objeto.pk %}" class="eliminar-link button-to-delete">ELIMINAR</a>
               {% endif %}
 
               <a href="{% url 'detalle_publicacion' objeto.pk %}">
                 {% if objeto.imagen_libro %}
-                <img src="{{ objeto.imagen_libro.url }}" alt="">
+                  <img src="{{ objeto.imagen_libro.url }}" alt="imagen-publicacion">
                 {% else %}
-                <img src="" alt="">
+                  <img src="{% static 'gestion_publicaciones/images/unavaliable-image.jpg' %}" alt="imagen-publicacion-no-disponible">
                 {% endif %}
               </a>
               <div class="down-content">
                 <a href="{% url 'detalle_publicacion' objeto.pk %}"><h4>{{ objeto.titulo_libro }}</h4></a>
                 <h5>Genero: {{ objeto.get_genero_libro_display }}</h5>
                 <h6>${{ objeto.precio }}</h6>
-                <p>{{objeto.descripcion|truncatechars:100}}</p>
+                <p>
+                  {% if objeto.descripcion %}
+                    {{objeto.descripcion|truncatechars:100}}
+                  {% else %}
+                    <i>Esta publicación no contiene ninguna descripción aún.</i>
+                  {% endif %}
+                </p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
@@ -95,69 +104,68 @@
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                 </ul>
-                <span>Preguntas (-)</span>
+                <span>Preguntas ({{ objeto.mensajes.all|length }})</span>
               </div>
             </div>
           </div>
           <!-- End publicacion -->
 
-          {% endfor %}
+        {% endfor %}
 
-
-        </div>
       </div>
     </div>
+  </div>
 
-    <script>
-    // funcion para hacer scroll hacia abajo cuando se filtra o se busca un producto
-    function scrollDown() {
-    const element = document.querySelector('#ank-for-see-all');
-    element.scrollIntoView({ behavior: 'smooth' });
-    }
+  <script>
+  // funcion para hacer scroll hacia abajo cuando se filtra o se busca un producto
+  function scrollDown() {
+  const element = document.querySelector('#ank-for-see-all');
+  element.scrollIntoView({ behavior: 'smooth' });
+  }
 
-    // Si el formulario se envió, hacer scroll hacia abajo
-    {% if request.method == 'POST' %}
-    const element = document.querySelector('#ank-for-see-all');
-    if (element) {
-      scrollDown();
-    }
-    {% endif %}
-    </script>
+  // Si el formulario se envió, hacer scroll hacia abajo
+  {% if request.method == 'POST' %}
+  const element = document.querySelector('#ank-for-see-all');
+  if (element) {
+    scrollDown();
+  }
+  {% endif %}
+  </script>
 
-    <script>
-    // Funcion para eliminar una publicacion de la BBDD por confirmacion
-      const eliminarLinks = document.querySelectorAll('.eliminar-link');
+  <script>
+  // Funcion para eliminar una publicacion de la BBDD por confirmacion
+    const eliminarLinks = document.querySelectorAll('.eliminar-link');
 
-      // Iterar sobre los enlaces y agregar un evento de clic
-      eliminarLinks.forEach(link => {
-        link.addEventListener('click', event => {
-          event.preventDefault();
+    // Iterar sobre los enlaces y agregar un evento de clic
+    eliminarLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
 
-          // Ventana emergente de confirmación
-          const confirmarEliminar = confirm('¿Seguro que querés eliminar la publicación?');
+        // Ventana emergente de confirmación
+        const confirmarEliminar = confirm('¿Seguro que querés eliminar la publicación?');
 
-          // Si el usuario confirma eliminar la publicacion
-          if (confirmarEliminar) {
-            const urlEliminar = link.getAttribute('href');
+        // Si el usuario confirma eliminar la publicacion
+        if (confirmarEliminar) {
+          const urlEliminar = link.getAttribute('href');
 
-            // Solicitud correspondiente al servidor para eliminar el objeto de la base de datos
-            fetch(urlEliminar, {
-              method: 'DELETE',
-              headers: {
-                'X-CSRFToken': '{{ csrf_token }}'
-              }
-            }).then(response => {
-              // Mostrar mensaje de alerta
-              alert('Publicación eliminada exitosamente.');
+          // Solicitud correspondiente al servidor para eliminar el objeto de la base de datos
+          fetch(urlEliminar, {
+            method: 'DELETE',
+            headers: {
+              'X-CSRFToken': '{{ csrf_token }}'
+            }
+          }).then(response => {
+            // Mostrar mensaje de alerta
+            alert('Publicación eliminada exitosamente.');
 
-              // Actualizar (redirigir a la misma pagina) después de la eliminación exitosa
-              window.location.href = "{% url 'tienda' %}";
-            }).catch(error => {
-              console.error('Error al eliminar la publicación:', error);
-            });
-          }
-        });
+            // Actualizar (redirigir a la misma pagina) después de la eliminación exitosa
+            window.location.href = "{% url 'tienda' %}";
+          }).catch(error => {
+            console.error('Error al eliminar la publicación:', error);
+          });
+        }
       });
-    </script>
+    });
+  </script>
 
 {% endblock content %}

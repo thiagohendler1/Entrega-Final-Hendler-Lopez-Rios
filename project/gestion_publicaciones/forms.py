@@ -20,7 +20,7 @@ class NuevaPublicacionForm(forms.ModelForm):
             'vendedor': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'vendedor_id', 'type': 'hidden', 'required': False}),
             'telefono_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefono de contacto', 'type': 'number'}),
             'email_contacto': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email de contacto'}),
-            'imagen_libro': forms.FileInput(attrs={'class': 'form-control', 'placeholder': 'Editorial del libro'})
+            'imagen_libro': forms.FileInput(attrs={'class': 'form-control'})
         }
         
 

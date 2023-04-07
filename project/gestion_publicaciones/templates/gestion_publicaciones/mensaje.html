@@ -35,9 +35,9 @@
               <h2>Dejar un mensaje:</h2>
               <form action="" method="POST"> {% csrf_token %}
                 <table>
-                    {{ form.as_table }}
+                  {{ form.as_table }}
                 </table>
-                <input type="submit" value="Publicar">
+                <button type="submit" class="boton-rojo button-send-message">Publicar</button>
               </form>
             </div>
           </div>
