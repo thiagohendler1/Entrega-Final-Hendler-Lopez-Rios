@@ -1274,3 +1274,51 @@ input#search-product {
 	background-color: #F0F0F0;
 	padding: 5px;
 }
+
+
+.container-detail {
+	padding: 10px 0px 10px 0px;
+}
+
+.container-detail-title .detail-title-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+.container-detail-price .detail-price-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+.container-detail-editorial .detail-editorial-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+.container-detail-author .detail-author-quote span {
+	color: #1a6692;
+	text-transform: uppercase;
+}
+
+
+.container-detail-title .detail-title-title h1 {
+	font-size: 2em;
+}
+
+.container-detail-price .detail-price-price span {
+	font-size: 2em;
+}
+
+.container-detail-genre h4 {
+	text-transform: uppercase;
+}
+
+.description-content {
+	padding: 20px 0px 20px 0px;
+}
+
+.publication-date {
+	margin-bottom: 80px;
+	font-style: italic;
+	color: #6b6b6b;
+}

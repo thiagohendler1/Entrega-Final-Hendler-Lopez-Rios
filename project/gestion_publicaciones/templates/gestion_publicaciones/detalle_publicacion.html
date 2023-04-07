@@ -8,8 +8,8 @@
 
 {% block content %}
 
-<!-- Banner Starts Here -->
-    
+  <!-- Banner Starts Here -->
+      
     <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
       <div class="container">
         <div class="row">
@@ -23,84 +23,125 @@
       </div>
     </div>
 
-    <!-- Banner Ends Here -->
+  <!-- Banner Ends Here -->
 
-    <div class="best-features about-features">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2></h2>
-            </div>
+  <div class="best-features about-features">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2></h2>
           </div>
-          <div class="col-md-6">
-            <div class="right-image">
-              <img src="{{ object.imagen_libro.url }}" alt="">
-            </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="right-image">
+            {% if object.imagen_libro %}
+              <img src="{{ object.imagen_libro.url }}" alt="imagen-publicacion">
+            {% else %}
+              <img src="{% static 'gestion_publicaciones/images/unavaliable-image.jpg' %}" alt="imagen-publicacion-no-disponible">
+            {% endif %}
           </div>
-          <div class="col-md-6">
-            <div class="left-content">
+        </div>
+
+        <div class="col-md-6">
+          <div class="left-content">
+            <div class="container-detail container-detail-genre">
               <h4>{{ object.get_genero_libro_display }}</h4>
-              <h3>{{ object.titulo_libro }}</h3>
-              <span>$ {{ object.precio }}</span>
-              <br>
-              <span>{{ object.editorial_libro }}</span>
-              <br>
-              <span>{{ object.autor_libro }}</span>
-              <br>
-              
             </div>
-          </div>
-          <div class="col-md-12">
-            <div class="book-description">
-              <br>
-              <br>
-              <span><strong>Descripcion</strong></span>
-              <p>{{ object.descripcion }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem quam obcaecati cum harum neque, assumenda blanditiis at officia facere quas adipisci nihil iste, accusamus fugit accusantium porro. Quam, hic deserunt.</p>
-              <br>
-
-              <span>Fecha de publicacion: {{ object.fecha_publicacion|date:"j F, Y" }}</span>
-              <br>
-              <br>
-              <br>
-
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="book-messages">
-              <span><strong>Preguntas</strong></span>
-              <br>
-              <span>¿Querés dejar tu pregunta?</span>
-              <a href="{% url 'mensaje' object.pk %}" class="filled-button">HACÉLO ACÁ</a>
-              <br>
-              <br>
-              <br>
-              <br>
-
-              <div class="container message-content">
-
-                {% if not object.mensajes.all %}
-                
-                <span>Parece que todavia no dejaron ningun mensaje...</span>
-
-                {% else %}
-                
-                    {% for msg in object.mensajes.all %}
-
-                        <span><strong>Mensaje: </strong>{{ msg.mensaje }}</span>
-                        <br>
-                        <span><small>{{ msg.fecha_mensaje }}</small></span>
-                        <hr>
-                    
-                    {% endfor %}
-
-                {% endif %}
-
+            <div class="container-detail container-detail-title">
+              <div class="detail-title-quote">
+                <span><small>TITULO</small></span>
               </div>
+              <div class="detail-title-title">
+                <h1>{{ object.titulo_libro }}</h1>
+              </div>
+            </div>
+            <div class="container-detail container-detail-price">
+              <div class="detail-price-quote">
+                <span><small>PRECIO</small></span>
+              </div>
+              <div class="detail-price-price">
+                <span>$ {{ object.precio }}</span>
+              </div>
+            </div>
+            <div class="container-detail container-detail-editorial">
+              <div class="detail-editorial-quote">
+                <span><small>EDITORIAL</small></span>
+              </div>
+              <div class="detail-editorial-editorial">
+                <span>{{ object.editorial_libro }}</span>
+              </div>
+            </div>
+            <div class="container-detail container-detail-author">
+              <div class="detail-author-quote">
+                <span><small>AUTOR</small></span>
+              </div>
+              <div class="detail-author-author">
+                <span>{{ object.autor_libro }}</span>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="book-description">
+            <div class="description-quote">
+              <span><strong>Descripcion</strong></span>
+            </div>
+            <div class="description-content">
+              <p>
+                {% if object.descripcion %}
+                  {{ object.descripcion }}
+                {% else %}
+                  <i>Esta publicación no contiene ninguna descripción aún.</i>
+                {% endif %}
+              </p>
+            </div>
+            <div class="publication-date">
+              <span>Fecha de publicacion: {{ object.fecha_publicacion|date:"j F, Y" }}</span>
             </div>
           </div>
         </div>
+
+        <div class="col-md-12">
+          <div class="book-messages">
+            <span><strong>Preguntas</strong></span>
+            <br>
+            <span>¿Querés dejar tu pregunta?</span>
+            <a href="{% url 'mensaje' object.pk %}" class="filled-button">HACÉLO ACÁ</a>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="container message-content">
+
+              {% if not object.mensajes.all %}
+              
+              <span>Parece que todavia no dejaron ningun mensaje...</span>
+
+              {% else %}
+              
+                  {% for msg in object.mensajes.all %}
+
+                      <span><strong>Mensaje: </strong>{{ msg.mensaje }}</span>
+                      <br>
+                      <span><small>{{ msg.fecha_mensaje }}</small></span>
+                      <hr>
+                  
+                  {% endfor %}
+
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+  </div>
 
 {% endblock content %}
