@@ -38,7 +38,7 @@ class Publicacion(models.Model):
 # Modelo para dejar un comentario en la publicacion
 
 class Mensaje(models.Model):
-    publicacion_mensaje = models.ForeignKey(Publicacion, related_name='mensajes', on_delete=models.CASCADE)
+    publicacion_mensaje = models.ForeignKey(Publicacion, related_name='mensajes', on_delete=models.CASCADE, null=True, blank=True)
     mensaje = models.TextField()
     fecha_mensaje = models.DateTimeField(auto_now_add=True)
     

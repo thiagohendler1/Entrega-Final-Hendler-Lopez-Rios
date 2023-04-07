@@ -69,9 +69,22 @@
           <!-- EJEMPLO PUBLICACION -->
           <div class="col-md-4">
             <div class="product-item">
-              <a href="#"><img src="{{ objeto.imagen_libro.url }}" alt=""></a>
+
+              {% if objeto.vendedor == request.user %}
+              <a href="{% url 'editar_publicacion' objeto.pk %}">EDITAR</a>
+
+              <a href="{% url 'eliminar_publicacion' objeto.pk %}" class="eliminar-link">ELIMINAR</a>
+              {% endif %}
+
+              <a href="{% url 'detalle_publicacion' objeto.pk %}">
+                {% if objeto.imagen_libro %}
+                <img src="{{ objeto.imagen_libro.url }}" alt="">
+                {% else %}
+                <img src="" alt="">
+                {% endif %}
+              </a>
               <div class="down-content">
-                <a href="#"><h4>{{ objeto.titulo_libro }}</h4></a>
+                <a href="{% url 'detalle_publicacion' objeto.pk %}"><h4>{{ objeto.titulo_libro }}</h4></a>
                 <h5>Genero: {{ objeto.get_genero_libro_display }}</h5>
                 <h6>${{ objeto.precio }}</h6>
                 <p>{{objeto.descripcion|truncatechars:100}}</p>
@@ -96,15 +109,55 @@
     </div>
 
     <script>
-    // Función para hacer scroll hacia abajo cuando se filtra por un producto
+    // funcion para hacer scroll hacia abajo cuando se filtra o se busca un producto
     function scrollDown() {
-      window.scrollBy(0, window.innerHeight);
+    const element = document.querySelector('#ank-for-see-all');
+    element.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Si el formulario se envió, hacer scroll hacia abajo
     {% if request.method == 'POST' %}
+    const element = document.querySelector('#ank-for-see-all');
+    if (element) {
       scrollDown();
+    }
     {% endif %}
+    </script>
+
+    <script>
+    // Funcion para eliminar una publicacion de la BBDD por confirmacion
+      const eliminarLinks = document.querySelectorAll('.eliminar-link');
+
+      // Iterar sobre los enlaces y agregar un evento de clic
+      eliminarLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          event.preventDefault();
+
+          // Ventana emergente de confirmación
+          const confirmarEliminar = confirm('¿Seguro que querés eliminar la publicación?');
+
+          // Si el usuario confirma eliminar la publicacion
+          if (confirmarEliminar) {
+            const urlEliminar = link.getAttribute('href');
+
+            // Solicitud correspondiente al servidor para eliminar el objeto de la base de datos
+            fetch(urlEliminar, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+              }
+            }).then(response => {
+              // Mostrar mensaje de alerta
+              alert('Publicación eliminada exitosamente.');
+
+              // Actualizar (redirigir a la misma pagina) después de la eliminación exitosa
+              window.location.href = "{% url 'tienda' %}";
+            }).catch(error => {
+              console.error('Error al eliminar la publicación:', error);
+            });
+          }
+        });
+      });
     </script>
 
 {% endblock content %}

@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 # ------ Importaciones para el crud ------
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.edit import UpdateView, CreateView
+from django.views.decorators.http import require_http_methods
 # ----------------------------------------
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
@@ -19,10 +21,11 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         # Guardado de las publicaciones mas recientes
         objetos = Publicacion.objects.all().order_by('-id')[:3]
-        objeto_uno = objetos[0]
-        objeto_dos = objetos[1]
-        objeto_tres = objetos[2]
-        context.update({'objeto_uno': objeto_uno, 'objeto_dos': objeto_dos, 'objeto_tres': objeto_tres})
+        if objetos:
+            objeto_uno = objetos[0] if len(objetos) >= 1 else None
+            objeto_dos = objetos[1] if len(objetos) >= 2 else None
+            objeto_tres = objetos[2] if len(objetos) >= 3 else None
+            context.update({'objeto_uno': objeto_uno, 'objeto_dos': objeto_dos, 'objeto_tres': objeto_tres, 'objetos': objetos})
         return context
 
 # LOGIN REQUIRED
@@ -75,7 +78,7 @@ class AboutView(TemplateView):
 
 # -------- CRUD de publicaciones --------
 
-# LOGIN REQUIRED MIXIN
+
 class PublicacionCreateView(LoginRequiredMixin, CreateView):
     model = Publicacion
     template_name = 'gestion_publicaciones/crear_publicacion.html'
@@ -85,3 +88,38 @@ class PublicacionCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.vendedor = self.request.user
         return super(PublicacionCreateView, self).form_valid(form)
+    
+    
+class PublicacionDetailView(LoginRequiredMixin, DetailView):
+    model = Publicacion
+    template_name = 'gestion_publicaciones/detalle_publicacion.html'
+
+
+class PublicacionUpdateView(LoginRequiredMixin, UpdateView):
+    model = Publicacion
+    template_name = 'gestion_publicaciones/editar_publicacion.html'
+    success_url = reverse_lazy('tienda')
+    form_class = EditarPublicacionForm
+    
+
+@require_http_methods(['DELETE'])
+def PublicacionDeleteView(request, pk):
+    publi = get_object_or_404(Publicacion, pk=pk)
+    publi.delete()
+    return HttpResponse(status=204)
+
+
+# -------- MENSAJES de las publicaciones --------
+
+
+class MensajeView(LoginRequiredMixin, CreateView):
+    model = Mensaje
+    template_name = 'gestion_publicaciones/mensaje.html'
+    form_class = MensajeForm
+    
+    def form_valid(self, form):
+        form.instance.publicacion_mensaje_id = self.kwargs['pk']
+        return super(MensajeView, self).form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('detalle_publicacion', kwargs={'pk': self.kwargs['pk']})

@@ -37,76 +37,95 @@
         
         {% if user.is_authenticated %}
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Las publicaciones mas recientes</h2>
-              <a href="{% url 'tienda' %}#ank-for-see-all">ver todas <i class="fa fa-angle-right"></i></a>
-            </div>
-          </div>
-      
-          <!-- Publicacion -->
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="{{ objeto_uno.imagen_libro.url }}" alt=""></a>
-              <div class="down-content">
-                <a href="#"><h4>{{objeto_uno.titulo_libro}}</h4></a>
-                <h6>${{objeto_uno.precio}}</h6>
-                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
-                <p>{{objeto_uno.descripcion|truncatechars:100}}</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-                <span>Reviews (24)</span>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section-heading">
+                  <h2>Las publicaciones mas recientes</h2>
+                  <a href="{% url 'tienda' %}#ank-for-see-all">ver todas <i class="fa fa-angle-right"></i></a>
+                </div>
               </div>
-            </div>
-          </div>
-          <!-- End publicacion -->
+              
+            {% if objetos %}
 
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="{{ objeto_dos.imagen_libro.url }}" alt=""></a>
-              <div class="down-content">
-                <a href="#"><h4>{{objeto_dos.titulo_libro}}</h4></a>
-                <h6>${{objeto_dos.precio}}</h6>
-                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
-                <p>{{objeto_dos.descripcion|truncatechars:100}}</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-                <span>Reviews (21)</span>
+              <!-- Publicacion -->
+              <div class="col-md-4">
+                <div class="product-item">
+                  <a href="#"><img src="{{ objeto_uno.imagen_libro.url }}" alt=""></a>
+                  <div class="down-content">
+                    <a href="#"><h4>{{objeto_uno.titulo_libro}}</h4></a>
+                    <h6>${{objeto_uno.precio}}</h6>
+                    <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                    <p>{{objeto_uno.descripcion|truncatechars:100}}</p>
+                    <ul class="stars">
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                    </ul>
+                    <span>Reviews (24)</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="{{ objeto_tres.imagen_libro.url }}" alt=""></a>
-              <div class="down-content">
-                <a href="#"><h4>{{objeto_tres.titulo_libro}}</h4></a>
-                <h6>${{objeto_tres.precio}}</h6>
-                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
-                <p>{{objeto_tres.descripcion|truncatechars:100}}</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-                <span>Reviews (36)</span>
-              </div>
-            </div>
-          </div>
+              <!-- End publicacion -->
 
-        </div>
+              {% if objeto_dos %}
+
+                <div class="col-md-4">
+                  <div class="product-item">
+                    <a href="#"><img src="{{ objeto_dos.imagen_libro.url }}" alt=""></a>
+                    <div class="down-content">
+                      <a href="#"><h4>{{objeto_dos.titulo_libro}}</h4></a>
+                      <h6>${{objeto_dos.precio}}</h6>
+                      <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                      <p>{{objeto_dos.descripcion|truncatechars:100}}</p>
+                      <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      <span>Reviews (21)</span>
+                    </div>
+                  </div>
+                </div>
+              
+              {% endif %}
+
+              {% if objeto_tres %}
+
+                <div class="col-md-4">
+                  <div class="product-item">
+                    <a href="#"><img src="{{ objeto_tres.imagen_libro.url }}" alt=""></a>
+                    <div class="down-content">
+                      <a href="#"><h4>{{objeto_tres.titulo_libro}}</h4></a>
+                      <h6>${{objeto_tres.precio}}</h6>
+                      <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                      <p>{{objeto_tres.descripcion|truncatechars:100}}</p>
+                      <ul class="stars">
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                      </ul>
+                      <span>Reviews (36)</span>
+                    </div>
+                  </div>
+                </div>
+              
+              {% endif %}
+          
+            {% else %}
+
+              <span>
+                Ups! Parece que no hay publicaciones. <a href="{% url 'crear_publicacion' %}">¡Proba creando la tuya!</a>
+              </span>
+
+            {% endif %}
+          
+            </div>
 
         <!-- Si el usuario no esta autenticado, no puede ver las publicaciones recientes -->
 
