@@ -75,8 +75,8 @@
             <div class="product-item">
 
               {% if objeto.vendedor == request.user %}
-                <a href="{% url 'editar_publicacion' objeto.pk %}">EDITAR</a>
-                <a href="{% url 'eliminar_publicacion' objeto.pk %}" class="eliminar-link">ELIMINAR</a>
+                <a href="{% url 'editar_publicacion' objeto.pk %}" class="button-to-modify">EDITAR</a>
+                <a href="{% url 'eliminar_publicacion' objeto.pk %}" class="eliminar-link button-to-delete">ELIMINAR</a>
               {% endif %}
 
               <a href="{% url 'detalle_publicacion' objeto.pk %}">
