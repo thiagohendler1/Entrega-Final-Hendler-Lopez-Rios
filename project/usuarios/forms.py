@@ -2,11 +2,13 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
 
+
 class CustomUserCreationForm(UserCreationForm):
     
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+
 
 # class UserEditForm(UserCreationForm):
 #     email = forms.EmailField(label='modificar email')
@@ -17,6 +19,7 @@ class CustomUserCreationForm(UserCreationForm):
 #         model = User
 #         fields = ['email', 'password1', 'password2']
 #         help_texts = {k:'' for k in fields}
+
 
 class UserEditForm(UserChangeForm):
     password = None
@@ -39,6 +42,7 @@ class UserEditForm(UserChangeForm):
 #         fields = ['username', 'password1', 'password2', 'email']
 #         help_texts= {k:"" for k in fields}
         
+        
 class UserRegisterForm(UserCreationForm):
     # Aca es donde se personaliza el formulario de registro
     # Las variables se deben llamar obligatoriamente como se ven debajo
@@ -58,14 +62,16 @@ class UserRegisterForm(UserCreationForm):
             'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de Usuario'})
         }
 
+
 class CustomAuthenticationForm(AuthenticationForm):
 
-    def init(self, args, **kwargs):
-        super(CustomAuthenticationForm, self).init(args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super(CustomAuthenticationForm, self).__init__(*args, **kwargs)
         self.fields['username'].widget.attrs['placeholder'] = 'Nombre de usuario'
         self.fields['username'].widget.attrs['class'] = 'form-control form-control-login'
         self.fields['password'].widget.attrs['placeholder'] = 'Contraseña'
         self.fields['password'].widget.attrs['class'] = 'form-control form-control-login'
+
 
 class PasswordEditForm(PasswordChangeForm):
     old_password = forms.CharField(label='Contraseña actual', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña actual'}))

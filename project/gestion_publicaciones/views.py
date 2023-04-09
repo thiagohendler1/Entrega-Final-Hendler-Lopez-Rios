@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from gestion_publicaciones.models import Publicacion, Mensaje
 from gestion_publicaciones.forms import NuevaPublicacionForm, EditarPublicacionForm, MensajeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 class HomeView(TemplateView):
@@ -28,7 +29,8 @@ class HomeView(TemplateView):
             context.update({'objeto_uno': objeto_uno, 'objeto_dos': objeto_dos, 'objeto_tres': objeto_tres, 'objetos': objetos})
         return context
 
-# LOGIN REQUIRED
+
+@login_required
 def TiendaView(request):
     object_list = Publicacion.objects.all()
     
@@ -67,7 +69,7 @@ def TiendaView(request):
     return render(request, 'gestion_publicaciones/tienda.html', {'object_list': object_list})
 
 
-# LOGIN REQUIRED
+
 def GenerosView(request):
     return render(request, 'gestion_publicaciones/generos.html')
 

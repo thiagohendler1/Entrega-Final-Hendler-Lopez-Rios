@@ -77,7 +77,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 #     return render(request, 'usuarios/register.html', {'form':form})
 
-def register_view(request):
+
+def RegisterView(request):
 
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
@@ -101,7 +102,8 @@ def register_view(request):
 
     return render(request, 'usuarios/register.html', {'form':form})
 
-def login_view(request):
+
+def LoginView(request):
     
 #FALTA AGREGAR AL HTML las keys de los value. 
     
@@ -125,6 +127,7 @@ def login_view(request):
         form = CustomAuthenticationForm()
     
     return render(request, 'usuarios/login.html', {'form': form})
+
 
 # def login(request):
 #     if request.method == 'POST':
@@ -165,6 +168,7 @@ def login_view(request):
     
 #     return render(request, 'edit_profile.html', {'myform': myform, 'usuario': usuario})
 
+
 @login_required
 def UserEditView(request):
     usuario = request.user
@@ -194,7 +198,6 @@ def UserEditView(request):
                     usuario.save()
                     
                     return redirect('inicio')
-
 
     else:
         form1 = UserEditForm()
