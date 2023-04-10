@@ -33,6 +33,7 @@ class HomeView(TemplateView):
 @login_required
 def TiendaView(request):
     object_list = Publicacion.objects.all()
+    print(request.user.avatar_user.first())
     
     # No API-Form
     if request.method == 'POST':

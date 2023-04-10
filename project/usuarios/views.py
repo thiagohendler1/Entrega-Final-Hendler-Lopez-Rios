@@ -204,3 +204,34 @@ def UserEditView(request):
         form2 = PasswordEditForm(request.user)
 
     return render(request, 'usuarios/edit_profile.html', {'form1': form1, 'form2': form2})
+
+
+@login_required
+def AvatarView(request):
+    
+    if request.method == "POST":
+        form = AvatarForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            usuario = User.objects.get(username=request.user.username)
+            imag = form.cleaned_data['imagen']
+            
+            existe_objeto = Avatar.objects.filter(user=usuario).exists()
+            
+            # Si el usuario ya tiene un avatar, lo actualiza
+            if existe_objeto:
+                avat = Avatar.objects.get(user=usuario)
+                avat.imagen = imag
+                avat.save()
+                
+            # Sino, lo agrega
+            else:
+                avat = Avatar(user=usuario, imagen=imag)
+                avat.save()
+            
+            return redirect('inicio')
+    
+    else:
+        form = AvatarForm()
+    
+    return render(request, 'usuarios/edit_avatar.html', {'form':form})

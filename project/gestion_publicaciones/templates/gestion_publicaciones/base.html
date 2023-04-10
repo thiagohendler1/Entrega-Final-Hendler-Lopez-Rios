@@ -69,11 +69,12 @@ https://templatemo.com/tm-546-sixteen-clothing
               {% if request.user.is_authenticated %}
                 <li class="nav-item profile-dropdown navli">
                   <a href="#" class="nava no-scroll">
-                    <img src="{% static 'gestion_publicaciones/images/facu-micha.jpg' %}" alt="Foto de perfil" class="navimg">
+                    <img src="{{ request.user.avatar_user.first.imagen.url }}" alt="Foto de perfil" class="navimg">
                     <span class="arrow-down"></span>
                   </a>
                   <ul class="dropdown-menu ml-semiauto">
-                    <li class="navli navli-li"><a href="{% url 'edite_profile' %}" class="nava">Editar perfil</a></li>
+                    <li class="navli navli-li"><a href="{% url 'edit_profile' %}" class="nava">Editar perfil</a></li>
+                    <li class="navli navli-li"><a href="{% url 'edit_avatar' %}" class="nava">Avatar</a></li>
                     <li class="navli navli-li"><a href="{% url 'logout' %}" class="nava">Salir</a></li>
                   </ul>
                 </li>

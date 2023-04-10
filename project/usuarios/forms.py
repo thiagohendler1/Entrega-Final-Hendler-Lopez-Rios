@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
+from usuarios.models import Avatar
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -81,3 +82,13 @@ class PasswordEditForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ['old_password', 'new_password1', 'new_password2']
+        
+        
+class AvatarForm(forms.ModelForm):
+    
+    class Meta:
+        model = Avatar
+        fields = ['imagen']
+        widgets = {
+            'imagen': forms.FileInput(attrs={'class': 'form-control form-control-avatar'})
+        }
