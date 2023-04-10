@@ -69,7 +69,11 @@ https://templatemo.com/tm-546-sixteen-clothing
               {% if request.user.is_authenticated %}
                 <li class="nav-item profile-dropdown navli">
                   <a href="#" class="nava no-scroll">
+                    {% if request.user.avatar_user.first.imagen %}
                     <img src="{{ request.user.avatar_user.first.imagen.url }}" alt="Foto de perfil" class="navimg">
+                    {% else %}
+                    <img src="{% static 'usuarios/images/defaul_profile.jpg' %}" alt="Foto de perfil" class="navimg">
+                    {% endif %}
                     <span class="arrow-down"></span>
                   </a>
                   <ul class="dropdown-menu ml-semiauto">
