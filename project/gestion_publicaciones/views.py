@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 # ------ Importaciones para el crud ------
 from django.views.generic import TemplateView
 from django.views.generic.detail import DetailView
