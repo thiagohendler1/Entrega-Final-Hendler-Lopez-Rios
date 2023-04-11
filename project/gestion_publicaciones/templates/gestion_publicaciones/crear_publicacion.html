@@ -1,0 +1,68 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %} Crear Publicacion {% endblock title %}
+
+{% block active_tienda %}active{% endblock active_tienda %}
+
+{% block content %}
+
+    <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>TIENDA</h4>
+              <h2>CREAR PUBLICACION</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="send-message">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Crear una publicacion</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-form">
+              <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <table> 
+                  {{ form.as_table }}
+                </table>
+                <button type="submit" class="filled-button">Publicar</button>
+              </form>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="non-mandatory-fields">
+              <ul>
+                <li class="li-up">
+                    <a><strong>Atencion</strong></a>
+                    <div class="content">
+                      <br>
+                      <p>Los siguientes campos NO son obligatorios:</p>
+                      <br>
+                      <p>- Imagen libro</p>
+                      <p>- Descripcion</p>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    var name = "{{ user.id }}";
+    document.getElementById("usuario_id").value = name;
+    </script>
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %} Publicar un mensaje {% endblock title %}
+
+{% block active_tienda %}active{% endblock active_tienda %}
+
+{% block content %}
+
+<!-- Banner Starts Here -->
+    
+    <!-- BOTON VOLVER ARRIBA -->
+
+    <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>TIENDA</h4>
+              <h2>DEJAR UN MENSAJE</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner Ends Here -->
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Dejar un mensaje:</h2>
+              <form action="" method="POST"> {% csrf_token %}
+                <table>
+                  {{ form.as_table }}
+                </table>
+                <button type="submit" class="boton-rojo button-send-message">Publicar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

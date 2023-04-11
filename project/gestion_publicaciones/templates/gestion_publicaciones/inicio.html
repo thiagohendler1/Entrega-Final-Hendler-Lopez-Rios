@@ -1,0 +1,232 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block active_inicio %}active{% endblock active_inicio %}
+
+{% block content %}
+
+  <!-- BOTON VOLVER ARRIBA -->
+
+    <a href="#" class="boton-scroll">
+      <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+
+  <!-- Banner Starts Here -->
+      
+    <div class="page-heading contact-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>BIENVENIDO</h4>
+              <h2>Transforma tu vida con los mejores libros</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Banner Ends Here -->
+
+  <div class="latest-products">
+    <div class="container">
+      
+      {% if user.is_authenticated %}
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Las publicaciones mas recientes</h2>
+              <a href="{% url 'tienda' %}#ank-for-see-all">ver todas <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+          
+        {% if objetos %}
+
+          <!-- Publicacion -->
+          <div class="col-md-4">
+            <div class="product-item">
+              <a href="{% url 'detalle_publicacion' objeto_uno.pk %}">
+                <!-- Si la publicacion tiene imagen, la carga. De lo contrario, carga 'unavaliable-image' -->
+                {% if objeto_uno.imagen_libro %}
+                  <img src="{{ objeto_uno.imagen_libro.url }}" alt="imagen-publicacion-reciente">
+                {% else %}
+                  <img src="{% static 'gestion_publicaciones/images/unavaliable-image.jpg' %}" alt="imagen-publicacion-reciente-no-disponible">
+                {% endif %}
+              </a>
+              <div class="down-content">
+                <a href="{% url 'detalle_publicacion' objeto_uno.pk %}"><h4>{{objeto_uno.titulo_libro}}</h4></a>
+                <h6>${{objeto_uno.precio}}</h6>
+                <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                <p>
+                  <!-- Si la publicacion tiene descripcion, la muestra. De lo contrario, lanza mensaje predeterminado -->
+                  {% if objeto_uno.descripcion %}
+                    {{objeto_uno.descripcion|truncatechars:100}}
+                  {% else %}
+                    <i>Esta publicación no contiene ninguna descripción aún.</i>
+                  {% endif %}
+                </p>
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <span>Preguntas ({{ objeto_uno.mensajes.all|length }})</span>
+              </div>
+            </div>
+          </div>
+          <!-- End publicacion -->
+
+          {% if objeto_dos %}
+
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="{% url 'detalle_publicacion' objeto_dos.pk %}">
+                  {% if objeto_dos.imagen_libro %}
+                    <img src="{{ objeto_dos.imagen_libro.url }}" alt="imagen-publicacion-reciente">
+                  {% else %}
+                    <img src="{% static 'gestion_publicaciones/images/unavaliable-image.jpg' %}" alt="imagen-publicacion-reciente-no-disponible">
+                  {% endif %}
+                </a>
+                <div class="down-content">
+                  <a href="{% url 'detalle_publicacion' objeto_dos.pk %}"><h4>{{objeto_dos.titulo_libro}}</h4></a>
+                  <h6>${{objeto_dos.precio}}</h6>
+                  <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                  <p>
+                    {% if objeto_dos.descripcion %}
+                      {{objeto_dos.descripcion|truncatechars:100}}
+                    {% else %}
+                      <i>Esta publicación no contiene ninguna descripción aún.</i>
+                    {% endif %}
+                  </p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Preguntas ({{ objeto_dos.mensajes.all|length }})</span>
+                </div>
+              </div>
+            </div>
+          
+          {% endif %}
+
+          {% if objeto_tres %}
+
+            <div class="col-md-4">
+              <div class="product-item">
+                <a href="{% url 'detalle_publicacion' objeto_tres.pk %}">
+                  {% if objeto_tres.imagen_libro %}
+                    <img src="{{ objeto_tres.imagen_libro.url }}" alt="imagen-publicacion-reciente">
+                  {% else %}
+                    <img src="{% static 'gestion_publicaciones/images/unavaliable-image.jpg' %}" alt="imagen-publicacion-reciente-no-disponible">
+                  {% endif %}
+                </a>
+                <div class="down-content">
+                  <a href="{% url 'detalle_publicacion' objeto_tres.pk %}"><h4>{{objeto_tres.titulo_libro}}</h4></a>
+                  <h6>${{objeto_tres.precio}}</h6>
+                  <!-- Se limita la descripcion a 100 caracteres con truncatechars -->
+                  <p>
+                    {% if objeto_tres.descripcion %}
+                      {{objeto_tres.descripcion|truncatechars:100}}
+                    {% else %}
+                      <i>Esta publicación no contiene ninguna descripción aún.</i>
+                    {% endif %}
+                  </p>
+                  <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                  </ul>
+                  <span>Preguntas ({{ objeto_tres.mensajes.all|length }})</span>
+                </div>
+              </div>
+            </div>
+          
+          {% endif %}
+      
+        {% else %}
+
+          <span>
+            Ups! Parece que no hay publicaciones. <a href="{% url 'crear_publicacion' %}">¡Proba creando la tuya!</a>
+          </span>
+
+        {% endif %}
+      
+        </div>
+
+      <!-- Si el usuario no esta autenticado, no puede ver las publicaciones recientes -->
+
+      {% else %}
+      
+        <div class="register-to-see">
+        <a href="{% url 'login' %}" class="filled-button">Iniciar sesion</a>
+        </div>
+
+      {% endif %}
+
+    </div>
+  </div>
+
+  <div class="best-features">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Sobre success mindset</h2>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="left-content">
+            <h4>Estas buscando libros de desarrollo personal?</h4>
+            <p><a rel="nofollow" href="{% url 'sobre_nosotros' %}" target="_parent">Success Mindset</a> es una pagina de compra-venta de libros enfocados al desarrollo personal, que tiene como objetivo ayudar a las personas a desarrollar una mentalidad de éxito y lograr sus metas y objetivos en la vida a traves de la lectura. Contactanos para recibir mas informacion.</p>
+            <ul class="featured-list">
+              <li><a href="{% url 'generos' %}">Desarrollo personal</a></li>
+              <li><a href="{% url 'generos' %}">Liderazgo</a></li>
+              <li><a href="{% url 'generos' %}">Riqueza</a></li>
+              <li><a href="{% url 'generos' %}">Emprendimiento</a></li>
+              <li><a href="{% url 'generos' %}">Analisis tecnico & Trading</a></li>
+              <li><a href="{% url 'generos' %}">Habitos</a></li>
+            </ul>
+            <a href="{% url 'register' %}" class="filled-button">Registrarse</a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="right-image">
+            <img src="{% static 'gestion_publicaciones/images/about-home.jpg' %}" alt="libros-about">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="call-to-action">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="inner-content">
+            <div class="row">
+              <div class="col-md-8">
+                <h4>Estamos <em>con vos.</em></h4>
+                <p>En SUCCESS MINDSET estamos comprometidos con tu desarrollo. Traemos los mejores títulos en libros sobre desarrollo personal, emprendimiento, finanzas y espiritualidad. Con el único propósito y objetivo de que logres desarrollarte al 100% como una persona exitosa.</p>
+              </div>
+              <div class="col-md-4">
+                <a href="{% url 'tienda' %}" class="filled-button">Comprar ahora</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

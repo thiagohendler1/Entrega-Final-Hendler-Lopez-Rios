@@ -1,0 +1,52 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %}Modificar avatar{% endblock title %}
+
+{% block active_inicio %}active{% endblock active_inicio %}
+
+{% block content %}
+
+    <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>USER</h4>
+                        <h2>AGREGAR/MODIFICAR AVATAR</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="send-message">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="section-heading">
+            <h2>Editar avatar de usuario</h2>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="contact-form">
+            <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <table>
+                {% if request.user.avatar_user.first.imagen %}
+                
+                <span>Tu avatar actual:</span>
+                <img src="{{ request.user.avatar_user.first.imagen.url }}" alt="">
+
+                {% endif %} 
+                {{ form.as_table }}
+                </table>
+                <button type="submit" class="boton-rojo">Editar</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock content %}
