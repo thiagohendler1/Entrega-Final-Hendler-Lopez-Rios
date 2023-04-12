@@ -1,0 +1,69 @@
+{% extends 'gestion_publicaciones/base.html' %}
+
+{% load static %}
+
+{% block title %} Editar Publicacion {% endblock title %}
+
+{% block active_tienda %}active{% endblock active_tienda %}
+
+{% block content %}
+
+    <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>TIENDA</h4>
+              <h2>MODIFICAR TU PUBLICACION</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="send-message">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Modificar tu publicacion</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-form">
+              <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <table> 
+                  {{ form.as_table }}
+                </table>
+                <button type="submit" class="filled-button">Modificar</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="non-mandatory-fields">
+              <div class="how-to-modify">
+                <ul>
+                  <li class="li-up">
+                      <a><strong>Atencion</strong></a>
+                      <div class="content">
+                        <br>
+                        <p>Para MODIFICAR la imagen, seleccione una con 'Change' en Imagen libro</p>
+                        <br>
+                        <p>Para ELIMINAR la imagen, marque el checkbox en 'Clear' de Imagen libro</p>
+                      </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    var name = "{{ user.id }}";
+    document.getElementById("usuario_id").value = name;
+    </script>
+
+{% endblock content %}

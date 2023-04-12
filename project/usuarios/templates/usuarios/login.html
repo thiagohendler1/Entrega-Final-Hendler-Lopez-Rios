@@ -1,0 +1,66 @@
+{% extends 'usuarios/base.html' %}
+
+{% load static %}
+
+{% block title %} Iniciar Sesion {% endblock title %}
+
+{% block active_iniciarsesion %}active{% endblock active_iniciarsesion %}
+
+{% block content %}
+
+    <div class="page-heading contact-heading header-text page-heading-login">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>LOG IN</h4>
+              <h2>Inicia sesion o registrate</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="send-message">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Iniciar sesion</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-form">
+              <form id="contact" action="" method="POST"> {% csrf_token %}
+                <table>
+                {{ form.as_table }}
+                </table>
+                <button class='boton-rojo' type="submit">Ingresar</button>
+              </form>
+              <span>{{mensaje}}</span>
+            </div>
+          </div>
+        <div class="col-md-4">
+            <ul>
+              <li class="li-up">
+                  <a>No tienes cuenta?</a>
+                  <div class="content">
+                      <p>Crea una con el boton de abajo!</p>
+                      <button type="button" class="boton-registro-login">
+                        <a href="{% url 'register' %}" class="excluir">Crear una cuenta</a>
+                      </button>
+                  </div>
+              </li>
+              <li class="li-down">
+                  <a>Olvidaste tu contraseña?</a>
+                  <div class="content">
+                      <p>Proximamente se implementara esta funcionalidad.</p>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

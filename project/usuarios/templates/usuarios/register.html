@@ -1,0 +1,59 @@
+{% extends 'usuarios/base.html' %}
+
+{% load static %}
+
+{% block title %} Registrarse {% endblock title %}
+
+{% block active_iniciarsesion %}active{% endblock active_iniciarsesion %}
+
+{% block content %}
+
+    <div class="page-heading contact-heading header-text page-heading-login page-heading-register">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>LOG IN</h4>
+              <h2>Registro</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="send-message">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Registrarse</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-form">
+              <form action="" method="POST">{% csrf_token %}
+                <table> 
+                  {{ form.as_table }}
+                </table>
+                <button class='boton-rojo' type="submit">Registrarse</button>
+              </form>
+            </div>
+          </div>
+        <div class="col-md-4">
+            <ul>
+              <li class="li-up">
+                  <a>Ya tenes una cuenta?</a>
+                  <div class="content">
+                      <p>Podes iniciar sesion con el boton de abajo</p>
+                      <button type="button" class="boton-registro-login">
+                        <a href="{% url 'login' %}" class="excluir">Iniciar sesion</a>
+                      </button>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
